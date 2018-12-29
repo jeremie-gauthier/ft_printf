@@ -1,5 +1,7 @@
 #include "ft_printf.h"
 
+#include <stdio.h> //to debug
+
 int		ft_printf(const char *s, ...)
 {
 	va_list	ap;
@@ -18,8 +20,15 @@ int		ft_printf(const char *s, ...)
 
 int	main(void)
 {
+	short	*ptr;
+	char	c = 'a';
+	short	nb = 30127;
+	unsigned long	ul =	2147483648;
+	unsigned long long	ull	= 3542698745;
+	long double	d = 1234.5678;
 
-	ft_printf("Bonjour @%o &%i\n", 8, 16);
-
+	ptr = &nb;
+	ft_printf("\nBonjour %p & %hd & %hhd & %ld & %lld & %Lf\n", ptr, nb, c, ul, ull, d);
+	printf("Bonjour %p & %0d & %hhd & %ld & %lld & %Lf\n", ptr, nb, c, ul, ull, d);
 	return (0);
 }

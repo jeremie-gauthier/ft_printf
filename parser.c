@@ -48,23 +48,60 @@ static void		add_flag(const char c, t_flags *fl)
 **	Checks whether the char `c` is a conversion specifier or not.
 */
 
-static int		not_a_conversion_specifier(const char c)
+// static int		not_a_conversion_specifier(const char c)
+// {
+// 	return (!(c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' ||
+// 		c == 'X' || c == 'c' || c == 's' || c == 'p' || c == '%' || c == 'f'));
+// }
+
+/*
+**	The char c is not a conversion flag.
+*/
+
+static int		not_a_conv_flag(const char c)
 {
-	return (!(c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' ||
-		c == 'X' || c == 'c' || c == 's' || c == 'p' || c == '%' || c == 'f'));
+	return (!(c == 'h' || c == 'l' || c == 'L'));
 }
+
+/*
+**	The char c is not a flag character.
+*/
+
+static int		not_an_attrs_flag(const char c)
+{
+	return (!(c == '#' || c == '0' || c == '-' || c == '+' || c == ' '));
+}
+
+/*
+**	Parse flags.
+*/
 
 const char		*ft_parser(const char *s, va_list ap)
 {
 	t_flags		*fl;
 
 	fl = init_flags();
-	while (*s && not_a_conversion_specifier(*s))
+	//On cherche en premier tous les caracteres d'attributs.
+	while (*s && !not_an_attrs_flag(*s))
+	{
 		add_flag(*s++, fl);
-	if (*s == 'i' || *s == 'd')
-		ft_conversion_i_d(fl, va_arg(ap, int));
-	if (*s == 'o')
-		ft_conversion_o(fl, va_arg(ap, unsigned int));
+	}
+	// Puis tous les flags concernant la conversion.
+	while (*s && !not_a_conv_flag(*s))
+		add_flag(*s++, fl);
+	// Et on convertit :D
+	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f')
+		ft_type_conv(fl, ap, *s);
+	else if (*s == 'c')
+		ft_conversion_c(fl, va_arg(ap, int));
+	else if (*s == 's')
+		ft_conversion_s(fl, va_arg(ap, char*));
+	else if (*s == 'p')
+		ft_conversion_p(fl, va_arg(ap, void*));
+	else if (*s == '%')
+		ft_conversion_pc(fl);
+	if (*s == 'f' && fl->L == 0)
+		ft_conversion_f(fl, va_arg(ap, double));
 	free(fl);
 	return (s + 1);
 }

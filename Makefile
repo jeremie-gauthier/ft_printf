@@ -15,7 +15,16 @@ NAME	=	ft_printf #mettre en .a
 SRCS	=	ft_printf.c		memory.c	parser.c	\
 			conversions/conversion_i_d.c	\
 			conversions/conversion_o.c		\
-			conversions/conversion_u.c		
+			conversions/conversion_u.c		\
+			conversions/conversion_xmin.c	\
+			conversions/conversion_xmaj.c	\
+			conversions/conversion_c.c	\
+			conversions/conversion_s.c	\
+			conversions/conversion_p.c	\
+			conversions/conversion_pc.c	\
+			conversions/conversion_f.c	\
+			conversions/type_conv.c		\
+			conversions/start_conv.c
 
 OBJS	=	$(SRCS:.c=.o)
 
