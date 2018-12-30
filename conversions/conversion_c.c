@@ -1,11 +1,9 @@
 #include "../ft_printf.h"
 
-void	ft_conversion_c(t_flags *fl, int nb)
+void	ft_conversion_c(t_flags *fl, int nb, const char *s)
 {
-	if (fl) //just to use it, to cancel error msgs
-	{
 	nb = (unsigned char)nb;
 	write(1, &nb, 1);
-		// ft_putchar((unsigned char)nb);
-	}
+	if (fl->pad)
+		ft_flag_pad_left(fl, NULL, s, 'c');
 }

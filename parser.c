@@ -42,6 +42,10 @@ static void		add_flag(const char c, t_flags *fl)
 		fl->pl = 1;
 	else if (c == ' ')
 		fl->sp = 1;
+	else if (ft_isdigit(c))
+		fl->pad = 1;
+	else if (c == '.')
+		fl->pr = 1;
 }
 
 /*
@@ -69,7 +73,7 @@ static int		not_a_conv_flag(const char c)
 
 static int		not_an_attrs_flag(const char c)
 {
-	return (!(c == '#' || c == '0' || c == '-' || c == '+' || c == ' '));
+	return (!(c == '#' || c == '0' || c == '-' || c == '+' || c == ' ' || c == '.'));
 }
 
 /*
@@ -79,29 +83,32 @@ static int		not_an_attrs_flag(const char c)
 const char		*ft_parser(const char *s, va_list ap)
 {
 	t_flags		*fl;
+	const char	*sptr;
 
+	sptr = s;
 	fl = init_flags();
 	//On cherche en premier tous les caracteres d'attributs.
-	while (*s && !not_an_attrs_flag(*s))
+	while (*s && (!not_an_attrs_flag(*s) || ft_isdigit(*s)))
 	{
 		add_flag(*s++, fl);
+		if (fl->mo || fl->pr || fl->pad)
+			while (*s && ft_isdigit(*s))
+				s++;
 	}
 	// Puis tous les flags concernant la conversion.
 	while (*s && !not_a_conv_flag(*s))
 		add_flag(*s++, fl);
 	// Et on convertit :D
 	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f')
-		ft_type_conv(fl, ap, *s);
+		ft_type_conv(fl, ap, *s, sptr);
 	else if (*s == 'c')
-		ft_conversion_c(fl, va_arg(ap, int));
+		ft_conversion_c(fl, va_arg(ap, int), sptr);
 	else if (*s == 's')
-		ft_conversion_s(fl, va_arg(ap, char*));
+		ft_conversion_s(fl, va_arg(ap, char*), sptr);
 	else if (*s == 'p')
-		ft_conversion_p(fl, va_arg(ap, void*));
+		ft_conversion_p(fl, va_arg(ap, void*), sptr);
 	else if (*s == '%')
-		ft_conversion_pc(fl);
-	if (*s == 'f' && fl->L == 0)
-		ft_conversion_f(fl, va_arg(ap, double));
+		ft_conversion_pc(fl, sptr);
 	free(fl);
 	return (s + 1);
 }

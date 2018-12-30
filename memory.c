@@ -20,6 +20,7 @@ t_flags		*init_flags(void)
 	new->mo = 0;
 	new->pl = 0;
 	new->sp = 0;
-	new->pr = -1;
+	new->pad = 0;
+	new->pr = 0;
 	return (new);
 }

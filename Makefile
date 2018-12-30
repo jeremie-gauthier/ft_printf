@@ -24,7 +24,8 @@ SRCS	=	ft_printf.c		memory.c	parser.c	\
 			conversions/conversion_pc.c	\
 			conversions/conversion_f.c	\
 			conversions/type_conv.c		\
-			conversions/start_conv.c
+			conversions/start_conv.c	\
+			flags/flag_pad.c
 
 OBJS	=	$(SRCS:.c=.o)
 
