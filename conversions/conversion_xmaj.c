@@ -9,10 +9,16 @@ void	ft_conversion_h_xmaj(t_flags *fl, unsigned short int nb, const char *s)
 	char	*conv;
 
 	conv = ft_uitoa_base(nb, 16);
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'X');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'X');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'X', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
 
@@ -25,10 +31,16 @@ void	ft_conversion_hh_xmaj(t_flags *fl, unsigned char nb, const char *s)
 	char	*conv;
 
 	conv = ft_uitoa_base(nb, 16);
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'X');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'X');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'X', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
 
@@ -41,10 +53,16 @@ void	ft_conversion_l_xmaj(t_flags *fl, unsigned long int nb, const char *s)
 	char	*conv;
 
 	conv = ft_ultoa_base(nb, 16);
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'X');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'X');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'X', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
 
@@ -57,10 +75,16 @@ void	ft_conversion_ll_xmaj(t_flags *fl, unsigned long long int nb, const char *s
 	char	*conv;
 
 	conv = ft_ulltoa_base(nb, 16);
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'X');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'X');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'X', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
 
@@ -73,9 +97,15 @@ void	ft_conversion_xmaj(t_flags *fl, unsigned int nb, const char *s)
 	char	*conv;
 
 	conv = ft_uitoa_base(nb, 16);
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'X');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'X');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'X', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }

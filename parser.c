@@ -35,7 +35,10 @@ static void		add_flag(const char c, t_flags *fl)
 	else if (c == '#')
 		fl->dz = 1;
 	else if (c == '0')
+	{
 		fl->f0 = 1;
+		fl->pad = 1;
+	}
 	else if (c == '-')
 		fl->mo = 1;
 	else if (c == '+')
@@ -91,7 +94,7 @@ const char		*ft_parser(const char *s, va_list ap)
 	while (*s && (!not_an_attrs_flag(*s) || ft_isdigit(*s)))
 	{
 		add_flag(*s++, fl);
-		if (fl->mo || fl->pr || fl->pad)
+		if (fl->mo || fl->pr || fl->pad || fl->f0)
 			while (*s && ft_isdigit(*s))
 				s++;
 	}

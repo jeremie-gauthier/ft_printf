@@ -15,10 +15,16 @@ void	ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 		precis = ft_atoi(s);
 		conv = ft_ldtoa(nb, precis);
 	}
-	if (fl->pad)
-		ft_flag_pad_left(fl, conv, s, 'i');
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'f');
+	else if (fl->pad)
+		ft_flag_pad_left(fl, conv, s, 'f');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'f', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
 
@@ -37,9 +43,15 @@ void	ft_conversion_f(t_flags *fl, double nb, const char *s)
 		precis = ft_atoi(s);
 		conv = ft_dtoa(nb, precis);
 	}
-	if (fl->pad)
+	if (fl->mo)
+		ft_flag_pad_right(fl, conv, s, 'f');
+	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'f');
 	else
-		ft_putstr(conv);
+	{
+		ft_flag_attrs(fl, 'f', conv);
+		if (conv)
+			ft_putstr(conv);
+	}
 	free(conv);
 }
