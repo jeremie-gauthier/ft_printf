@@ -21,7 +21,7 @@ void	ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'f');
 	else
 	{
-		ft_flag_attrs(fl, 'f', conv);
+		ft_flag_attrs(fl, 'f');
 		if (conv)
 			ft_putstr(conv);
 	}
@@ -49,7 +49,7 @@ void	ft_conversion_f(t_flags *fl, double nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'f');
 	else
 	{
-		ft_flag_attrs(fl, 'f', conv);
+		ft_flag_attrs(fl, 'f');
 		if (conv)
 			ft_putstr(conv);
 	}

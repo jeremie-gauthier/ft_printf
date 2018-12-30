@@ -14,6 +14,7 @@ NAME	=	ft_printf #mettre en .a
 
 SRCS	=	ft_printf.c		memory.c	parser.c	\
 			conversions/conversion_i_d.c	\
+			conversions/conversion_b.c		\
 			conversions/conversion_o.c		\
 			conversions/conversion_u.c		\
 			conversions/conversion_xmin.c	\

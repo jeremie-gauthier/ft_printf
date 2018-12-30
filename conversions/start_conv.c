@@ -6,7 +6,9 @@
 
 void		start_uns_char_conv(t_flags *fl, unsigned char data, char c, const char *s)
 {
-	if (c == 'o')
+	if (c == 'b')
+		ft_conversion_hh_b(fl, data, s);
+	else if (c == 'o')
 		ft_conversion_hh_o(fl, data, s);
 	else if (c == 'u')
 		ft_conversion_hh_u(fl, data, s);
@@ -22,7 +24,9 @@ void		start_uns_char_conv(t_flags *fl, unsigned char data, char c, const char *s
 
 void		start_uns_short_conv(t_flags *fl, unsigned short int data, char c, const char *s)
 {
-	if (c == 'o')
+	if (c == 'b')
+		ft_conversion_h_b(fl, data, s);
+	else if (c == 'o')
 		ft_conversion_h_o(fl, data, s);
 	else if (c == 'u')
 		ft_conversion_h_u(fl, data, s);
@@ -38,7 +42,9 @@ void		start_uns_short_conv(t_flags *fl, unsigned short int data, char c, const c
 
 void		start_uns_long_conv(t_flags *fl, unsigned long int data, char c, const char *s)
 {
-	if (c == 'o')
+	if (c == 'b')
+		ft_conversion_l_b(fl, data, s);
+	else if (c == 'o')
 		ft_conversion_l_o(fl, data, s);
 	else if (c == 'u')
 		ft_conversion_l_u(fl, data, s);
@@ -54,7 +60,9 @@ void		start_uns_long_conv(t_flags *fl, unsigned long int data, char c, const cha
 
 void		start_uns_long_long_conv(t_flags *fl, unsigned long long int data, char c, const char *s)
 {
-	if (c == 'o')
+	if (c == 'b')
+		ft_conversion_ll_b(fl, data, s);
+	else if (c == 'o')
 		ft_conversion_ll_o(fl, data, s);
 	else if (c == 'u')
 		ft_conversion_ll_u(fl, data, s);

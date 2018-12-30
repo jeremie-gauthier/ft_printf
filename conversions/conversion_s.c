@@ -6,7 +6,7 @@ void	ft_conversion_s(t_flags *fl, char *str, const char *s)
 		ft_flag_pad_left(fl, str, s, 'i');
 	else
 	{
-		ft_flag_attrs(fl, 's', str);
+		ft_flag_attrs(fl, 's');
 		if (str)
 			ft_putstr(str);
 	}

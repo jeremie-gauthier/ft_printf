@@ -15,7 +15,7 @@ void	ft_conversion_h_xmin(t_flags *fl, unsigned short int nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'x');
 	else
 	{
-		ft_flag_attrs(fl, 'x', conv);
+		ft_flag_attrs(fl, 'x');
 		if (conv)
 			ft_putstr(conv);
 	}
@@ -37,7 +37,7 @@ void	ft_conversion_hh_xmin(t_flags *fl, unsigned char nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'x');
 	else
 	{
-		ft_flag_attrs(fl, 'x', conv);
+		ft_flag_attrs(fl, 'x');
 		if (conv)
 			ft_putstr(conv);
 	}
@@ -59,7 +59,7 @@ void	ft_conversion_l_xmin(t_flags *fl, unsigned long int nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'x');
 	else
 	{
-		ft_flag_attrs(fl, 'x', conv);
+		ft_flag_attrs(fl, 'x');
 		if (conv)
 			ft_putstr(conv);
 	}
@@ -81,7 +81,7 @@ void	ft_conversion_ll_xmin(t_flags *fl, unsigned long long int nb, const char *s
 		ft_flag_pad_left(fl, conv, s, 'x');
 	else
 	{
-		ft_flag_attrs(fl, 'x', conv);
+		ft_flag_attrs(fl, 'x');
 		if (conv)
 			ft_putstr(conv);
 	}
@@ -103,7 +103,7 @@ void	ft_conversion_xmin(t_flags *fl, uintptr_t nb, const char *s)
 		ft_flag_pad_left(fl, conv, s, 'x');
 	else
 	{
-		ft_flag_attrs(fl, 'x', conv);
+		ft_flag_attrs(fl, 'x');
 		if (conv)
 			ft_putstr(conv);
 	}

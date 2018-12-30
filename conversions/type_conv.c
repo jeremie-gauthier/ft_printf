@@ -4,6 +4,8 @@ static void		ft_regular_conv(t_flags *fl, va_list ap, char c, const char *s)
 {
 	if (c == 'i' || c =='d')
 		ft_conversion_i_d(fl, va_arg(ap, int), s);
+	else if (c == 'b')
+		ft_conversion_b(fl, va_arg(ap, unsigned int), s);
 	else if (c == 'o')
 		ft_conversion_o(fl, va_arg(ap, unsigned int), s);
 	else if (c == 'u')

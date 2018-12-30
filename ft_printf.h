@@ -32,6 +32,12 @@ void			ft_conversion_hh_i_d(t_flags *fl, char nb, const char *s);
 void			ft_conversion_l_i_d(t_flags *fl, long int nb, const char *s);
 void			ft_conversion_ll_i_d(t_flags *fl, long long int nb, const char *s);
 
+void			ft_conversion_b(t_flags *fl, unsigned int nb, const char *s);
+void			ft_conversion_h_b(t_flags *fl, unsigned short int nb, const char *s);
+void			ft_conversion_hh_b(t_flags *fl, unsigned char nb, const char *s);
+void			ft_conversion_l_b(t_flags *fl, unsigned long int nb, const char *s);
+void			ft_conversion_ll_b(t_flags *fl, unsigned long long int nb, const char *s);
+
 void			ft_conversion_o(t_flags *fl, unsigned int nb, const char *s);
 void			ft_conversion_h_o(t_flags *fl, unsigned short int nb, const char *s);
 void			ft_conversion_hh_o(t_flags *fl, unsigned char nb, const char *s);
@@ -70,7 +76,7 @@ void			start_uns_long_conv(t_flags *fl, unsigned long int data, char c, const ch
 void			start_uns_long_long_conv(t_flags *fl, unsigned long long int data, char c, const char *s);
 void			start_long_double_conv(t_flags *fl, long double data, const char *s);
 
-void			ft_flag_attrs(t_flags *fl, char c, const char *conv);
+void			ft_flag_attrs(t_flags *fl, char c);
 void			ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c);
 void			ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c);
 

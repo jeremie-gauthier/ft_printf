@@ -102,7 +102,7 @@ const char		*ft_parser(const char *s, va_list ap)
 	while (*s && !not_a_conv_flag(*s))
 		add_flag(*s++, fl);
 	// Et on convertit :D
-	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f')
+	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f' || *s == 'b')
 		ft_type_conv(fl, ap, *s, sptr);
 	else if (*s == 'c')
 		ft_conversion_c(fl, va_arg(ap, int), sptr);
