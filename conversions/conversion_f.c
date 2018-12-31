@@ -23,7 +23,7 @@ void	ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'f');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }
@@ -51,7 +51,7 @@ void	ft_conversion_f(t_flags *fl, double nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'f');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }

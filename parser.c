@@ -83,7 +83,7 @@ static int		not_an_attrs_flag(const char c)
 **	Parse flags.
 */
 
-const char		*ft_parser(const char *s, va_list ap)
+const char		*ft_parser(const char *s, va_list ap, int *ret)
 {
 	t_flags		*fl;
 	const char	*sptr;
@@ -103,7 +103,7 @@ const char		*ft_parser(const char *s, va_list ap)
 		add_flag(*s++, fl);
 	// Et on convertit :D
 	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f' || *s == 'b')
-		ft_type_conv(fl, ap, *s, sptr);
+		*ret = ft_type_conv(fl, ap, *s, sptr);
 	else if (*s == 'c')
 		ft_conversion_c(fl, va_arg(ap, int), sptr);
 	else if (*s == 's')
@@ -115,12 +115,3 @@ const char		*ft_parser(const char *s, va_list ap)
 	free(fl);
 	return (s + 1);
 }
-
-// int	main(int argc, char **argv)
-// {
-// 	if (argc == 2)
-// 	{
-// 		ft_parser(argv[1]);
-// 	}
-// 	return (0);
-// }

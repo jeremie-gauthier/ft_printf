@@ -1,10 +1,12 @@
 #include "../ft_printf.h"
 
-void	ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c)
+int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c)
 {
 	int		padding;
 	size_t	len;
+	int		ret;
 
+	ret = 0;
 	len = (conv == NULL) ? 1 : ft_strlen(conv);
 	if (fl->mo)
 	{
@@ -14,11 +16,12 @@ void	ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char 
 	padding = ft_abs(ft_atoi(s + 1)) - len;
 	if (c == 'i' || c == 'd')
 		padding -= (fl->sp | fl->pl);
-	if ((c == 'o' || c == 'x' || c == 'X') && fl->dz)
-		padding -= (c == 'x' || c == 'X') ? 2 : 1;
+	if ((c == 'o' || c == 'x' || c == 'X' || c == 'b') && fl->dz)
+		padding -= (c == 'x' || c == 'X' || c == 'b') ? 2 : 1;
+	ret = padding + len;
 	if (conv)
 	{
-		ft_flag_attrs(fl, c);
+		ret += ft_flag_attrs(fl, c);
 		ft_putstr(conv);
 	}
 	else if (conv == NULL)
@@ -28,13 +31,16 @@ void	ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char 
 		while (padding--)
 			ft_putchar(' ');
 	}
+	return (ret);
 }
 
-void	ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c)
+int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c)
 {
 	int		padding;
 	size_t	len;
+	int		ret;
 
+	ret = 0;
 	if ((fl->mo | fl->pr) == 0)
 	{
 		len = (conv == NULL) ? 1 : ft_strlen(conv);
@@ -53,13 +59,14 @@ void	ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			padding -= (fl->sp | fl->pl);
 		if ((c == 'o' || c == 'x' || c == 'X') && fl->dz)
 			padding -= (c == 'x' || c == 'X') ? 2 : 1;
+		ret = padding + len;
 		if (padding > 0)
 		{
 			while (padding--)
 				(fl->f0 == 1) ? ft_putchar('0') : ft_putchar(' ');
 			if (conv)
 			{
-				ft_flag_attrs(fl, c);
+				ret += ft_flag_attrs(fl, c);
 				ft_putstr(conv);
 			}
 			else if (conv == NULL)
@@ -69,9 +76,10 @@ void	ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 		{
 			if (conv)
 			{
-				ft_flag_attrs(fl, c);
+				ret += ft_flag_attrs(fl, c);
 				ft_putstr(conv);
 			}
 		}
 	}
+	return (ret);
 }

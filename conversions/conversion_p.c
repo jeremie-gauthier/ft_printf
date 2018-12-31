@@ -21,5 +21,5 @@ void	ft_conversion_p(t_flags *fl, void *p, const char *s)
 	else if (fl->pad)
 		ft_flag_pad_left(fl, conv, s, 'p');
 	else
-		ft_putstr(conv);
+		ft_putstr_unicode(conv);
 }

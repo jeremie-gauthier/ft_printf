@@ -17,7 +17,7 @@ void	ft_conversion_h_o(t_flags *fl, unsigned short int nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'o');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }
@@ -39,7 +39,7 @@ void	ft_conversion_hh_o(t_flags *fl, unsigned char nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'o');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }
@@ -61,7 +61,7 @@ void	ft_conversion_l_o(t_flags *fl, unsigned long int nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'o');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }
@@ -83,7 +83,7 @@ void	ft_conversion_ll_o(t_flags *fl, unsigned long long int nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'o');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }
@@ -105,7 +105,7 @@ void	ft_conversion_o(t_flags *fl, unsigned int nb, const char *s)
 	{
 		ft_flag_attrs(fl, 'o');
 		if (conv)
-			ft_putstr(conv);
+			ft_putstr_unicode(conv);
 	}
 	free(conv);
 }

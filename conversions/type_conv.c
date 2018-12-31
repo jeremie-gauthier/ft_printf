@@ -1,9 +1,9 @@
 #include "../ft_printf.h"
 
-static void		ft_regular_conv(t_flags *fl, va_list ap, char c, const char *s)
+static int		ft_regular_conv(t_flags *fl, va_list ap, char c, const char *s)
 {
 	if (c == 'i' || c =='d')
-		ft_conversion_i_d(fl, va_arg(ap, int), s);
+		return (ft_conversion_i_d(fl, va_arg(ap, int), s));
 	else if (c == 'b')
 		ft_conversion_b(fl, va_arg(ap, unsigned int), s);
 	else if (c == 'o')
@@ -16,13 +16,14 @@ static void		ft_regular_conv(t_flags *fl, va_list ap, char c, const char *s)
 		ft_conversion_xmaj(fl, va_arg(ap, unsigned int), s);
 	else if (c == 'f')
 		ft_conversion_f(fl, va_arg(ap, double), s);
+	return (0);
 }
 
 /*
 **	For flag conversion, call the good function with good type.
 */
 
-void			ft_type_conv(t_flags *fl, va_list ap, char c, const char *s)
+int				ft_type_conv(t_flags *fl, va_list ap, char c, const char *s)
 {
 	if (fl->hh) //signed ou uns. char
 	{
@@ -58,5 +59,6 @@ void			ft_type_conv(t_flags *fl, va_list ap, char c, const char *s)
 			start_long_double_conv(fl, va_arg(ap, long double), s);
 	}
 	else
-		ft_regular_conv(fl, ap, c, s);
+		return (ft_regular_conv(fl, ap, c, s));
+	return (0);
 }
