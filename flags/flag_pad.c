@@ -3,7 +3,7 @@
 int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c)
 {
 	int		padding;
-	size_t	len;
+	int		len;
 	int		ret;
 
 	ret = 0;
@@ -31,16 +31,17 @@ int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char 
 		while (padding--)
 			ft_putchar(' ');
 	}
-	return (ret);
+	return (ret > len) ? ret : len;
 }
 
 int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c)
 {
 	int		padding;
-	size_t	len;
+	int		len;
 	int		ret;
 
 	ret = 0;
+	len = 0;
 	if ((fl->mo | fl->pr) == 0)
 	{
 		len = (conv == NULL) ? 1 : ft_strlen(conv);
@@ -81,5 +82,5 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			}
 		}
 	}
-	return (ret);
+	return (ret > len) ? ret : len;
 }

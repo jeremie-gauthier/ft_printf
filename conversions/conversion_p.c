@@ -11,15 +11,18 @@ static char		*ft_ptr_to_str(uintptr_t nb)
 	return (conv);
 }
 
-void	ft_conversion_p(t_flags *fl, void *p, const char *s)
+int		ft_conversion_p(t_flags *fl, void *p, const char *s)
 {
 	char	*conv;
+	int		ret;
 
 	conv = ft_ptr_to_str((uintptr_t)&(*p));
+	ret = ft_strlen(conv);
 	if (fl->mo)
-		ft_flag_pad_right(fl, conv, s, 'p');
+		ret = ft_flag_pad_right(fl, conv, s, 'p');
 	else if (fl->pad)
-		ft_flag_pad_left(fl, conv, s, 'p');
+		ret = ft_flag_pad_left(fl, conv, s, 'p');
 	else
 		ft_putstr_unicode(conv);
+	return (ret);
 }

@@ -105,13 +105,13 @@ const char		*ft_parser(const char *s, va_list ap, int *ret)
 	if (*s == 'd' || *s == 'i' || *s == 'o' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'f' || *s == 'b')
 		*ret = ft_type_conv(fl, ap, *s, sptr);
 	else if (*s == 'c')
-		ft_conversion_c(fl, va_arg(ap, int), sptr);
+		*ret = ft_conversion_c(fl, va_arg(ap, int), sptr);
 	else if (*s == 's')
-		ft_conversion_s(fl, va_arg(ap, char*), sptr);
+		*ret = ft_conversion_s(fl, va_arg(ap, char*), sptr);
 	else if (*s == 'p')
-		ft_conversion_p(fl, va_arg(ap, void*), sptr);
+		*ret = ft_conversion_p(fl, va_arg(ap, void*), sptr);
 	else if (*s == '%')
-		ft_conversion_pc(fl, sptr);
+		*ret = ft_conversion_pc(fl, sptr);
 	free(fl);
 	return (s + 1);
 }
