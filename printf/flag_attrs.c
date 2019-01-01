@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 /*
 **	Print a '+' before the data. (Overload the space flag)
@@ -62,7 +62,7 @@ static int		ft_flag_dz(const char c)
 	return (0);
 }
 
-int			ft_flag_attrs(t_flags *fl, const char c)
+int				ft_flag_attrs(t_flags *fl, const char c)
 {
 	int	ret;
 

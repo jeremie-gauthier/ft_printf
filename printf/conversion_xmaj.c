@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 /*
 **	Conversion X are call with appropriate function for flag 'h' conversion.
@@ -17,7 +17,8 @@ int		ft_conversion_h_xmaj(t_flags *fl, unsigned short int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'X');
 	else
 	{
-		ret += ft_flag_attrs(fl, 'X');
+		if (nb != 0)
+			ret += ft_flag_attrs(fl, 'X');
 		if (conv)
 			ft_putstr_unicode(conv);
 	}
@@ -42,7 +43,8 @@ int		ft_conversion_hh_xmaj(t_flags *fl, unsigned char nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'X');
 	else
 	{
-		ret += ft_flag_attrs(fl, 'X');
+		if (nb != 0)
+			ret += ft_flag_attrs(fl, 'X');
 		if (conv)
 			ft_putstr_unicode(conv);
 	}
@@ -67,7 +69,8 @@ int		ft_conversion_l_xmaj(t_flags *fl, unsigned long int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'X');
 	else
 	{
-		ret += ft_flag_attrs(fl, 'X');
+		if (nb != 0)
+			ret += ft_flag_attrs(fl, 'X');
 		if (conv)
 			ft_putstr_unicode(conv);
 	}
@@ -92,7 +95,8 @@ int		ft_conversion_ll_xmaj(t_flags *fl, unsigned long long int nb, const char *s
 		ret = ft_flag_pad_left(fl, conv, s, 'X');
 	else
 	{
-		ret += ft_flag_attrs(fl, 'X');
+		if (nb != 0)
+			ret += ft_flag_attrs(fl, 'X');
 		if (conv)
 			ft_putstr_unicode(conv);
 	}
@@ -117,7 +121,8 @@ int		ft_conversion_xmaj(t_flags *fl, unsigned int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'X');
 	else
 	{
-		ret += ft_flag_attrs(fl, 'X');
+		if (nb != 0)
+			ret += ft_flag_attrs(fl, 'X');
 		if (conv)
 			ft_putstr_unicode(conv);
 	}

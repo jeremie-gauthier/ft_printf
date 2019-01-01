@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static char		*ft_ptr_to_str(uintptr_t nb)
 {

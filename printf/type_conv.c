@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static int		ft_regular_conv(t_flags *fl, va_list ap, char c, const char *s)
 {

@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 /*
 **	Conversion i and d are call with appropriate function for flag 'h' conversion.

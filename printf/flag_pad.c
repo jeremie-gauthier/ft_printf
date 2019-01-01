@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c)
 {
@@ -10,7 +10,7 @@ int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char 
 	len = (conv == NULL) ? 1 : ft_strlen(conv);
 	if (fl->mo)
 	{
-		while (*s != '-')
+		while (*s && *s != '-')
 			s++;
 	}
 	padding = ft_abs(ft_atoi(s + 1)) - len;
@@ -39,15 +39,20 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 	int		padding;
 	int		len;
 	int		ret;
+	int		prec;
 
 	ret = 0;
 	len = 0;
-	if ((fl->mo | fl->pr) == 0)
+	// if ((fl->mo | fl->pr) == 0)
+	if (fl->mo == 0)
 	{
+		// if (fl->pr)
+		// 	prec = ft_get_flag_value(s, '.');
 		len = (conv == NULL) ? 1 : ft_strlen(conv);
+		// prec = (prec >= len) ? prec : len;
 		if (fl->f0)
 		{
-			while (*s != '0')
+			while (*s && *s != '0')
 				s++;
 		}
 		else
@@ -68,6 +73,10 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			if (conv)
 			{
 				ret += ft_flag_attrs(fl, c);
+				if (c == 's')
+					ret += ft_flag_prec_s((char*)conv, s);
+				else
+					ret += ft_flag_prec_diouxX((char*)conv, s);
 				ft_putstr(conv);
 			}
 			else if (conv == NULL)

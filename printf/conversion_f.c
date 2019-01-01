@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int		ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 {

@@ -1,4 +1,4 @@
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 /*
 **	Call the good function when a 'hh' flag is found.

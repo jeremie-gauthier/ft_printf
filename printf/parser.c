@@ -1,5 +1,12 @@
 #include "ft_printf.h"
 
+int		ft_get_flag_value(const char *s, const char c)
+{
+	while (*s && *s != c)
+		s++;
+	return (ft_abs(ft_atoi(s + 1)));
+}
+
 /*
 **	A special swap coded to swap bits from differents fields inside a bitfield.
 */
