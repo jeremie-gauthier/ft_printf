@@ -6,12 +6,13 @@ int		ft_conversion_s(t_flags *fl, char *str, const char *s)
 
 	ret = ft_strlen(str);
 	if (fl->pad)
-		ret = ft_flag_pad_left(fl, str, s, 'i');
-	else
+		ret = ft_flag_pad_left(fl, str, s, 's');
+	else if (fl->pr)
 	{
-		ret += ft_flag_attrs(fl, 's');
-		if (str)
-			ft_putstr_unicode(str);
+		ret = ft_flag_attrs(fl, 's');
+		ret += ft_flag_prec_s(str, s);
 	}
+	else
+		ft_putstr_unicode(str);
 	return (ret);
 }

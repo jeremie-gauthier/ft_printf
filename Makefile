@@ -54,8 +54,11 @@ CLEAN	=	clean
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJS) Makefile
+$(LIB)	:
 			@make -C $(LIB_PATH)
+
+$(NAME)	:	$(OBJS) $(LIB) Makefile
+			@#@make -C $(LIB_PATH)
 			@cp $(LIB) ./$(NAME)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)

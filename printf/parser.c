@@ -2,8 +2,17 @@
 
 int		ft_get_flag_value(const char *s, const char c)
 {
-	while (*s && *s != c)
-		s++;
+	if (c == '1')
+	{
+		while (*s && !ft_isdigit(*s))
+			s++;
+		return (ft_abs(ft_atoi(s)));
+	}
+	else
+	{
+		while (*s && *s != c)
+			s++;
+	}
 	return (ft_abs(ft_atoi(s + 1)));
 }
 
