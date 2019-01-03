@@ -62,7 +62,7 @@ static int		ft_flag_dz(const char c)
 	return (0);
 }
 
-int				ft_flag_attrs(t_flags *fl, const char c)
+int				ft_flag_attrs(t_flags *fl, const char c, const char *conv)
 {
 	int	ret;
 
@@ -70,11 +70,11 @@ int				ft_flag_attrs(t_flags *fl, const char c)
 	// ft_putstr("\nLEN depart: ");
 	// ft_putnbr(ret);
 	// ft_putchar('\n');
-	if (fl->pl)
+	if (conv && fl->pl && conv[0] != '-')
 		ret += ft_flag_plus(c);
-	else if (fl->sp)
+	else if (conv && fl->sp && conv[0] != '-')
 		ret += ft_flag_space(fl, c);
-	if (fl->dz)
+	if (conv && fl->dz)
 		ret += ft_flag_dz(c);
 	// ft_putstr("\nLEN flag #: ");
 	// ft_putnbr(ret);

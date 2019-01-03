@@ -26,12 +26,12 @@ int		ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'f');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'f');
+		ret = ft_flag_attrs(fl, 'f', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'f');
+		ret += ft_flag_attrs(fl, 'f', conv);
 		ft_putstr(conv);
 	}
 	free(conv);
@@ -64,12 +64,12 @@ int		ft_conversion_f(t_flags *fl, double nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'f');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'f');
+		ret = ft_flag_attrs(fl, 'f', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'f');
+		ret += ft_flag_attrs(fl, 'f', conv);
 		ft_putstr(conv);
 	}
 	free(conv);

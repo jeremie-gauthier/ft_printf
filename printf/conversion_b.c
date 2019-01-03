@@ -19,12 +19,12 @@ int		ft_conversion_h_b(t_flags *fl, unsigned short int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'b');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'b');
+		ret = ft_flag_attrs(fl, 'b', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'b');
+		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
 	free(conv);
@@ -50,12 +50,12 @@ int		ft_conversion_hh_b(t_flags *fl, unsigned char nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'b');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'b');
+		ret = ft_flag_attrs(fl, 'b', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'b');
+		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
 	free(conv);
@@ -81,12 +81,12 @@ int		ft_conversion_l_b(t_flags *fl, unsigned long int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'b');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'b');
+		ret = ft_flag_attrs(fl, 'b', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'b');
+		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
 	free(conv);
@@ -112,12 +112,12 @@ int		ft_conversion_ll_b(t_flags *fl, unsigned long long int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'b');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'b');
+		ret = ft_flag_attrs(fl, 'b', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'b');
+		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
 	free(conv);
@@ -143,12 +143,12 @@ int		ft_conversion_b(t_flags *fl, unsigned int nb, const char *s)
 		ret = ft_flag_pad_left(fl, conv, s, 'b');
 	else if (fl->pr)
 	{
-		ret = ft_flag_attrs(fl, 'b');
+		ret = ft_flag_attrs(fl, 'b', conv);
 		ret += ft_flag_prec_diouxX(conv, s);
 	}
 	else
 	{
-		ret += ft_flag_attrs(fl, 'b');
+		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
 	free(conv);

@@ -6,7 +6,11 @@ int		ft_get_flag_value(const char *s, const char c)
 	{
 		while (*s && !ft_isdigit(*s))
 			s++;
-		return (ft_abs(ft_atoi(s)));
+		if (ft_abs(ft_atoi(s)) != 0)
+			return (ft_abs(ft_atoi(s)));
+		while (*s && !ft_isdigit(*s))
+			s++;
+		return (ft_abs(ft_atoi(s + 1)));
 	}
 	else
 	{
