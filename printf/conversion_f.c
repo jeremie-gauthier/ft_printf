@@ -27,7 +27,7 @@ int		ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'f', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{
@@ -65,7 +65,7 @@ int		ft_conversion_f(t_flags *fl, double nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'f', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{

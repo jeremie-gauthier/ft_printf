@@ -20,7 +20,7 @@ int		ft_conversion_h_u(t_flags *fl, unsigned short int nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'u', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{
@@ -51,7 +51,7 @@ int		ft_conversion_hh_u(t_flags *fl, unsigned char nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'u', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{
@@ -82,7 +82,7 @@ int		ft_conversion_l_u(t_flags *fl, unsigned long int nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'u', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{
@@ -113,7 +113,7 @@ int		ft_conversion_ll_u(t_flags *fl, unsigned long long int nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'u', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{
@@ -144,7 +144,7 @@ int		ft_conversion_u(t_flags *fl, unsigned int nb, const char *s)
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'u', conv);
-		ret += ft_flag_prec_diouxX(conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s);
 	}
 	else
 	{

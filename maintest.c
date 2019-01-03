@@ -13,15 +13,18 @@ int	main(void)
 	// // char *str = "\U0001f921";
 	// char *s = "\U0001F198";
 int len = 0;
+	char	*str;
+
+	str = "blabla";
 	// ptr = &nb;
 	// ft_printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.1Lf\n", s, c, nb, nb, ul, ull, d);
 	//    printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.01Lf\n", s, c, nb, nb, ul, ull, d);
-	len = ft_printf("%-5c", 42);
+	len = ft_printf("%03.2d", -1);
 	ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putendl("\n");
-	   len = printf("%-5c", 42);
-	ft_putchar('\n');
+	   len = printf("%03.2d", -1);
+	// ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putchar('\n');
 	return (0);
