@@ -38,7 +38,8 @@ SOURCES	=	ft_printf.c		memory.c	parser.c	\
 			start_conv.c	\
 			flag_attrs.c	\
 			flag_pad.c		\
-			flag_prec.c
+			flag_prec.c	\
+			flag_pad_s.c
 
 SRCS	=	$(addprefix $(PTF_PATH)/,$(SOURCES))
 

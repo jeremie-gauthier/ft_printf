@@ -87,8 +87,15 @@ int		ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char 
 	int		len;
 	int		prec;
 	int		ret;
+	int		sign;
 
+	sign = (conv && conv[0] == '-') ? 1 : 0;
 	pad_value = deduct_flags(fl, c, s, '-');
+	if (fl->sp && sign && (c == 'i' || c =='d'))
+	{
+		fl->sp = 0;
+		pad_value++;
+	}
 	len = (conv == NULL) ? 1 : ft_strlen(conv);
 	prec = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 	// ft_putstr("\npad_value : ");
@@ -151,8 +158,13 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 
 	sign = (conv && conv[0] == '-') ? 1 : 0;
 	pad_value = deduct_flags(fl, c, s, '1');
+	if (fl->sp && sign && (c == 'i' || c =='d'))
+	{
+		fl->sp = 0;
+		pad_value++;
+	}
 	len = (conv == NULL) ? 1 : ft_strlen(conv);
-	if (conv && conv[0] == '-')
+	if (sign)
 	{
 		len--;
 		pad_value--;
@@ -160,28 +172,28 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 	// if (ft_strncmp(conv, "", 1) == 0)
 	// 	len = 1;
 	prec = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
-	// ft_putstr("\npad_value : ");
+	// ft_putstr("pad_value : ");
 	// ft_putnbr(pad_value);
-	// ft_putchar('\n');
 	// ft_putstr("\nlen(conv) : ");
 	// ft_putnbr(len);
-	// ft_putchar('\n');
 	// ft_putstr("\nprec : ");
 	// ft_putnbr(prec);
-	// ft_putchar('\n');
 	prec = (len > prec) ? len : prec;
+	// ft_putstr("\nrebalanced prec : ");
+	// ft_putnbr(prec);
+	// ft_putstr("\n\n");
 	ret = 0;
 	if (pad_value > prec)
 	{
 		if (fl->f0 == 1 && fl->pr == 0)
 		{
+			ret = ft_flag_attrs(fl, c, conv);
 			if (conv && *conv == '-')
 			{
 				ft_putchar(*conv++);
 				(fl->pl) ? pad_value++ : 0;
 				fl->pl = 0;
 			}
-			ret = ft_flag_attrs(fl, c, conv);
 			while (prec++ < pad_value)
 				ft_putchar('0');
 		}
@@ -193,20 +205,20 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			{
 				while (prec++ < pad_value)
 					ft_putchar(' ');
+				ret = ft_flag_attrs(fl, c, conv);
 				if (conv && *conv == '-')
 				{
 					ft_putchar(*conv++);
 					(fl->pl) ? pad_value++ : 0;
 					fl->pl = 0;
 				}
-				ret = ft_flag_attrs(fl, c, conv);
 			}
 		}
 		prec = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 		prec = (len > prec) ? len : prec;
 		while (c != 's' && len++ < prec)
 			ft_putchar('0');
-		fl->pr = 0;
+//		fl->pr = 0;
 		if (conv)
 		{
 			if (ft_strcmp(conv, "\0") == 0)
@@ -216,7 +228,7 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			// 	ft_flag_prec_diouxX(fl, (char*)conv, s);
 			else
 			{
-				if (ft_get_flag_value(s, '.') == 0 && ft_strcmp(conv, "0") == 0)
+				if (fl->pr && ft_get_flag_value(s, '.') == 0 && ft_strcmp(conv, "0") == 0)
 					ft_putchar(' ');
 				else
 					ft_putstr_unicode(conv);
@@ -237,7 +249,7 @@ int		ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c
 			(fl->pl) ? pad_value++ : 0;
 			fl->pl = 0;
 		}
-		while (len++ < prec)
+		while (len++ < prec && c != 's')
 			ft_putchar('0');
 		(conv != NULL) ? ft_putstr_unicode(conv) : ft_putchar(c);
 		return (prec + ret + sign);

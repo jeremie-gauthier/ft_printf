@@ -79,6 +79,9 @@ int				ft_conversion_s(t_flags *fl, char *str, const char *s);
 int				ft_conversion_p(t_flags *fl, void *p, const char *s);
 int				ft_conversion_pc(t_flags *fl, const char *s);
 
+int				ft_pad_str(t_flags *fl, const char *str, const char *s);
+
+
 int				ft_get_flag_value(const char *s, const char c);
 int				ft_flag_attrs(t_flags *fl, char c, const char *conv);
 int				ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c);

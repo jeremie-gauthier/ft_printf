@@ -71,11 +71,20 @@ int				ft_flag_attrs(t_flags *fl, const char c, const char *conv)
 	// ft_putnbr(ret);
 	// ft_putchar('\n');
 	if (conv && fl->pl && conv[0] != '-')
+	{
 		ret += ft_flag_plus(c);
-	else if (conv && fl->sp && conv[0] != '-')
-		ret += ft_flag_space(fl, c);
+		fl->pl = 0;
+	}
+	else if (conv && fl->sp)
+	{
+		ret += (conv && *conv == '-' && (c == 'd' || c == 'i')) ? 0 : ft_flag_space(fl, c);
+		fl->sp = 0;
+	}
 	if (conv && fl->dz)
+	{
 		ret += ft_flag_dz(c);
+		fl->dz = 0;
+	}
 	// ft_putstr("\nLEN flag #: ");
 	// ft_putnbr(ret);
 	// ft_putchar('\n');

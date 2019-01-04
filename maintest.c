@@ -19,11 +19,12 @@ int len = 0;
 	// ptr = &nb;
 	// ft_printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.1Lf\n", s, c, nb, nb, ul, ull, d);
 	//    printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.01Lf\n", s, c, nb, nb, ul, ull, d);
-	len = ft_printf("%03.2d", -1);
+	
+	len = ft_printf("%2s", "#nyancat inside"); // "% 012i", -291176810
 	ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putendl("\n");
-	   len = printf("%03.2d", -1);
+	   len = printf("%2s", "#nyancat inside");
 	// ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putchar('\n');
