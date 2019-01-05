@@ -9,8 +9,6 @@ int		ft_conversion_s(t_flags *fl, char *str, const char *s)
 	ret = ft_strlen(str);
 	if (fl->pad || fl->mo)
 		ret = ft_pad_str(fl, str, s);
-	// else if (fl->mo)
-	// 	ret = ft_pad_str(fl, str, s);
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 's', str);

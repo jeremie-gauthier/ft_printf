@@ -79,7 +79,16 @@ int				ft_conversion_s(t_flags *fl, char *str, const char *s);
 int				ft_conversion_p(t_flags *fl, void *p, const char *s);
 int				ft_conversion_pc(t_flags *fl, const char *s);
 
+int				get_pad_val(t_flags *fl, const char c, const char *s, const char *conv);
+int				ft_precision_format_int(const char *conv, int precis);
+int				ft_put_zeroes(int pad_val, int len);
+int				ft_put_spaces(int pad_val, int len);
+
 int				ft_pad_str(t_flags *fl, const char *str, const char *s);
+int				ft_pad_c(t_flags *fl, const unsigned char c, const char *s);
+int				ft_pad_diouxXb_right(t_flags *fl, const char *conv, const char *s, const char c);
+int				ft_pad_diouxXb_left(t_flags *fl, const char *conv, const char *s, const char c);
+int				ft_pad_diouxXb(t_flags *fl, const char *conv, const char *s, const char c);
 
 
 int				ft_get_flag_value(const char *s, const char c);
