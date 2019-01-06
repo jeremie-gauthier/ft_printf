@@ -14,18 +14,36 @@ int	main(void)
 	// char *s = "\U0001F198";
 int len = 0;
 	char	*str;
+	char	*ret;
+	char	*p_all_01;
 
-	str = "blabla";
+	ret = "Coucou";
+	p_all_01 = "56";
+	str = "@moulitest: %#.o %#.0o\n", 0, 0;
+	
+	char	*str2;
+	str2 = "test %-7M %007d%-10.2ls!!\n";
 	// ptr = &nb;
 	// ft_printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.1Lf\n", s, c, nb, nb, ul, ull, d);
 	//    printf("%s %5c & %--10i & %05hd & %08ld & %lld & %#+.01Lf\n", s, c, nb, nb, ul, ull, d);
-	
-	len = ft_printf("6chiffre 1 %+-5.1d chiffre 2 %4.d\n", -42, -42); // "% 012i", -291176810
-	// ft_putchar('\n');
+	/*# 0040 (int)
+  ft_printf("%#x", 0);
+  1. (    3) -->0x0<--
+  2. (    1) -->0<--
+
+# 0046 (int)
+  ft_printf("@moulitest: %#.x %#.0x", 0, 0);
+  1. (   17) -->@moulitest: 0x 0x<--
+  2. (   13) -->@moulitest:  <--*/
+
+	//"@moulitest: %#.o %#.0o", 0, 0 [95] Moi: pas de 0 affiche || Lui: 0 affiches
+	//"@moulitest: %.o %.0o", 0, 0    \n
+	len = ft_printf("%03.2d|", 1);
+	ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putendl("\n");
-	   len = printf("6chiffre 1 %+-5.1d chiffre 2 %4.d\n", -42, -42);
-	// ft_putchar('\n');
+	   len = printf("%03.2d|", 1);
+	ft_putchar('\n');
 	ft_putnbr(len);
 	ft_putchar('\n');
 	return (0);

@@ -7,7 +7,7 @@ int			ft_pad_diouxXb_right(t_flags *fl, const char *conv, const char *s, const c
 	int		precis;
 	int		ret;
 
-	pad_val = get_pad_val(fl, c, s, conv);
+	pad_val = ft_get_flag_value(s, '-');
 	len = ft_strlen(conv);
 	precis = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 	fl->f0 = 0;
@@ -17,15 +17,11 @@ int			ft_pad_diouxXb_right(t_flags *fl, const char *conv, const char *s, const c
 		if (conv && *conv == '-')
 		{
 			ft_putchar(*conv++);
-			// (fl->pl) ? pad_val++ : 0;
 			ret++;
 			fl->pl = 0;
 		}
 		ret += ft_flag_attrs(fl, c, conv);
 		ret += ft_precision_format_int((char*)conv, precis);
-		ft_putnbr(len);
-		if (precis > pad_val)
-			pad_val -= len;
 	}
 	else
 	{
@@ -40,6 +36,14 @@ int			ft_pad_diouxXb_right(t_flags *fl, const char *conv, const char *s, const c
 		}
 		ft_putstr_unicode(conv);
 	}
-	ret += ft_put_spaces(pad_val, len);
+	pad_val -= ret;
+	if (pad_val < 0)
+		pad_val = 0;
+	// ft_putnbr(pad_val);
+	// if (ret < pad_val)
+	//ft_putnbr(ret);
+	ret += ft_put_spaces(pad_val, 0);
+	// else
+	// 	ret += ft_put_spaces(pad_val, len);
 	return (ret);
 }

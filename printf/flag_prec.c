@@ -1,37 +1,42 @@
 #include "ft_printf.h"
 
-int		ft_flag_prec_diouxX(t_flags *fl, char *conv, const char *s)
+int		ft_flag_prec_diouxX(t_flags *fl, char *conv, const char *s, const char c)
 {
-	unsigned int	precis;
-	int				sign;
-	size_t			len;
+	int		precis;
+	int		sign;
+	int		len;
+	int		ret;
 
 	sign = (conv && *conv == '-') ? 1 : 0;
 	if (conv && *conv == '-')
 		ft_putchar(*conv++);
 	precis = ft_get_flag_value(s, '.');
 	len = ft_strlen(conv);
+	ret = ft_flag_attrs(fl, c, conv);
+	precis -= ret;
 	if (precis > len)
 	{
 		while (len++ < precis)
 			ft_putchar('0');
 		ft_putstr(conv);
-		return (precis + sign);
+		return (precis + ret + sign);
 	}
 	else if (precis <= len)
 	{
-		if (ft_strcmp(conv, "0") == 0)
+		len--;
+		if (ft_strcmp(conv, "0") == 0 && precis == 0 && c != 'o')
 		{
-			if (fl->pad)		//"@moulitest: %.x %.0x", 0, 0 [47]
-				ft_putchar(' '); // "@moulitest: %5.x %5.0x", 0, 0 [48]
-			len--;
+			if (fl->pad)
+				ft_putchar(' ');
 		}
-		else
+		else if (ft_strlen(conv) != 1 || ft_strcmp(conv, "0") != 0)
+		{
+			len++;
 			ft_putstr_unicode(conv);
-		// (ft_strcmp(conv, "0") == 0) ? 0 : ft_putstr_unicode(conv);
-		// len--;
+		}
 	}
-	return (len + sign);
+	// ft_putnbr(ret);
+	return (len + sign + ret);
 }
 
 int		ft_flag_prec_s(char *str, const char *s)

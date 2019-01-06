@@ -95,7 +95,7 @@ int				ft_get_flag_value(const char *s, const char c);
 int				ft_flag_attrs(t_flags *fl, char c, const char *conv);
 int				ft_flag_pad_right(t_flags *fl, const char *conv, const char *s, const char c);
 int				ft_flag_pad_left(t_flags *fl, const char *conv, const char *s, const char c);
-int				ft_flag_prec_diouxX(t_flags *fl, char *conv, const char *s);
+int				ft_flag_prec_diouxX(t_flags *fl, char *conv, const char *s, const char c);
 int				ft_flag_prec_s(char *str, const char *s);
 
 #endif

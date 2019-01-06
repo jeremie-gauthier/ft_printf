@@ -20,14 +20,12 @@ int		ft_conversion_L_f(t_flags *fl, long double nb, const char *s)
 		conv = ft_ldtoa(nb, precis);
 		ret = ft_strlen(conv);
 	}
-	if (fl->mo)
-		ret = ft_flag_pad_right(fl, conv, s, 'f');
-	else if (fl->pad)
-		ret = ft_flag_pad_left(fl, conv, s, 'f');
+	if (fl->pad || fl->mo)
+		ret = ft_pad_diouxXb(fl, conv, s, 'f');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'f', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s, 'f');
 	}
 	else
 	{
@@ -58,14 +56,12 @@ int		ft_conversion_f(t_flags *fl, double nb, const char *s)
 		conv = ft_dtoa(nb, precis);
 		ret = ft_strlen(conv);
 	}
-	if (fl->mo)
-		ret = ft_flag_pad_right(fl, conv, s, 'f');
-	else if (fl->pad)
-		ret = ft_flag_pad_left(fl, conv, s, 'f');
+	if (fl->pad || fl->mo)
+		ret = ft_pad_diouxXb(fl, conv, s, 'f');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'f', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s);
+		ret += ft_flag_prec_diouxX(fl, conv, s, 'f');
 	}
 	else
 	{

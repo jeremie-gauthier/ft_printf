@@ -16,18 +16,36 @@ static int	deal_with_negative(t_flags *fl, const char **conv, int pad_val)
 	return (ret);
 }
 
-static int	ft_put_spaces_pr(int pad_val, int precis, int len)
+static int	ft_put_spaces_pr(int pad_val, int precis, int len, const char *conv)
 {
 	int		tmp;
 
-	precis = (precis > len) ? precis : len;
-	tmp = precis;
-	if (pad_val < precis)
-		return (0);
-	while (precis < pad_val)
+	// ft_putnbr(pad_val);
+	// BOUCLE A
+	if (ft_strcmp(conv, "0") == 0 && precis == 0)
 	{
-		ft_putchar(' ');
-		precis++;
+		// ft_putstr("A");
+		tmp = 0;
+		// precis = len;
+		while (precis < pad_val)
+		{
+			ft_putchar(' ');
+			precis++;
+		}
+	}
+	// BOUCLE B
+	else
+	{
+		// ft_putstr("B");
+		precis = (precis > len) ? precis : len;
+		tmp = precis;
+		if (pad_val < precis)
+			return (0);
+		while (precis < pad_val)
+		{
+			ft_putchar(' ');
+			precis++;
+		}
 	}
 	return (pad_val - tmp);
 }
@@ -38,13 +56,17 @@ static int	pad_pr(t_flags *fl, const char *conv, const char *s, const char c)
 	int		len;
 	int		precis;
 	int		ret;
+	int		sign;
 
+	sign = (*conv == '-') ? 1 : 0;
 	pad_val = get_pad_val(fl, c, s, conv);
 	len = ft_strlen(conv);
 	precis = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 	ret = 0;
-	if (pad_val > precis)
-		ret += ft_put_spaces_pr(pad_val, precis, len);
+	// ft_putnbr(precis);
+	if (pad_val > precis + sign)
+		ret += ft_put_spaces_pr(pad_val, precis, len, conv);
+
 	// if (precis > pad_val)
 	// 	ret += ft_put_zeroes(pad_val, len);
 	// else if (precis <= pad_val)
@@ -55,8 +77,22 @@ static int	pad_pr(t_flags *fl, const char *conv, const char *s, const char c)
 	ret += ft_flag_attrs(fl, c, conv);
 	ret += deal_with_negative(fl, &conv, pad_val);
 	ret += ft_precision_format_int((char*)conv, precis);
+	// ft_putstr("ici");
 	return (ret);
 }
+
+// int			ft_put_spaces_left(int pad_val, int len)
+// {
+// 	int		tmp;
+
+// 	tmp = len;
+// 	while (pad_val > len && pad_val > 0)
+// 	{
+// 		ft_putchar(' ');
+// 		pad_val--;
+// 	}
+// 	return (tmp - pad_val);
+// }
 
 static int	pad_no_pr(t_flags *fl, const char *conv, const char *s, const char c)
 {
@@ -72,17 +108,18 @@ static int	pad_no_pr(t_flags *fl, const char *conv, const char *s, const char c)
 	if (fl->f0 == 0)
 	{
 		ret += ft_put_spaces(pad_val, len);
-		ret += ft_flag_attrs(fl, c, conv);
 		ret += deal_with_negative(fl, &conv, pad_val);
+		ret += ft_flag_attrs(fl, c, conv);
+		ft_putstr_unicode(conv);
 	}
 	else if (fl->f0 == 1)
 	{
 		ret += deal_with_negative(fl, &conv, pad_val);
 		ret += ft_flag_attrs(fl, c, conv);
 		ret += ft_put_zeroes(pad_val, len);
+		ft_putstr_unicode(conv);
 	}
 	ret += ft_strlen(conv);
-	ft_putstr_unicode(conv);
 	return (ret);
 }
 

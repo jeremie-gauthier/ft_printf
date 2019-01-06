@@ -37,7 +37,6 @@ SOURCES	=	ft_printf.c		memory.c	parser.c	\
 			type_conv.c		\
 			start_conv.c	\
 			flag_attrs.c	\
-			flag_pad.c		\
 			flag_prec.c	\
 			flag_pad_s.c	\
 			flag_pad_c.c	\

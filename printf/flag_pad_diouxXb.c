@@ -10,7 +10,7 @@ int			get_pad_val(t_flags *fl, const char c, const char *s, const char *conv)
 		if ((fl->sp || fl->pl) && conv && conv[0] != '-')
 			pad_val--;
 	}
-	if ((c == 'o' || c == 'x' || c == 'X' || c == 'b') && fl->dz)
+	if ((c == 'o' || c == 'x' || c == 'X' || c == 'b') && fl->dz && (ft_strlen(conv) != 1 || *conv != '0'))
 		pad_val -= (c == 'x' || c == 'X' || c == 'b') ? 2 : 1;
 	if (pad_val < 0)
 		return (0);
@@ -36,25 +36,45 @@ int			ft_put_spaces(int pad_val, int len)
 {
 	int		tmp;
 
-	tmp = len;
-	while (len < pad_val)
+	tmp = pad_val;
+	pad_val -= len;
+	while (pad_val && pad_val > 0)
 	{
 		ft_putchar(' ');
-		len++;
+		pad_val--;
 	}
-	if (pad_val - tmp >= 0)
-		return (pad_val - tmp);
-	return (0);}
+	if (tmp - len < 0)
+		return (0);
+	return (tmp - len);
+	// if (pad_val - tmp >= 0)
+	// 	return (pad_val - tmp);
+	// return (0);
+}
 
 int			ft_precision_format_int(const char *conv, int precis)
 {
 	int		len;
 
 	len = ft_strlen(conv);
-	while (len++ < precis)
+	while (len < precis)
+	{
 		ft_putchar('0');
-	ft_putstr_unicode(conv);
-	return (len - 1);
+		len++;
+	}
+//	if (precis > 0 && ft_strlen(conv) != 1 && *conv != '0')
+	if (ft_strcmp(conv, "0") == 0)
+	{
+		if (precis > 0)
+			ft_putstr_unicode(conv);
+		else if (precis == 0)
+			len = 0;
+	}
+	else
+	{
+		if (ft_strcmp(conv, "0") != 0)
+			ft_putstr_unicode(conv);
+	}
+	return (len);
 }
 
 
