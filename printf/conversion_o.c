@@ -32,7 +32,8 @@ int		ft_conversion_h_o(t_flags *fl, unsigned short int nb, const char *s)
 		ret += ft_flag_attrs(fl, 'o', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -56,7 +57,8 @@ int		ft_conversion_hh_o(t_flags *fl, unsigned char nb, const char *s)
 		ret += ft_flag_attrs(fl, 'o', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -80,7 +82,8 @@ int		ft_conversion_l_o(t_flags *fl, unsigned long int nb, const char *s)
 		ret += ft_flag_attrs(fl, 'o', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -105,7 +108,8 @@ int		ft_conversion_ll_o(t_flags *fl, unsigned long long int nb,
 		ret += ft_flag_attrs(fl, 'o', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -117,7 +121,9 @@ int		ft_conversion_o(t_flags *fl, unsigned int nb, const char *s)
 {
 	char	*conv;
 	int		ret;
+	int		prefix;
 
+	prefix = (fl->dz == 1) ? 1 : 0;
 	conv = ft_uitoa_base(nb, 8);
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
@@ -127,8 +133,12 @@ int		ft_conversion_o(t_flags *fl, unsigned int nb, const char *s)
 	else
 	{
 		ret += ft_flag_attrs(fl, 'o', conv);
-		ft_putstr(conv);
+		if (prefix == 0 || ft_strcmp(conv, "0") != 0)
+			ft_putstr(conv);
+		else
+			ret--;
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }

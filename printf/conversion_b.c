@@ -62,7 +62,8 @@ int		ft_conversion_hh_b(t_flags *fl, unsigned char nb, const char *s)
 		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -89,7 +90,8 @@ int		ft_conversion_l_b(t_flags *fl, unsigned long int nb, const char *s)
 		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -117,7 +119,8 @@ int		ft_conversion_ll_b(t_flags *fl, unsigned long long int nb,
 		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -144,6 +147,7 @@ int		ft_conversion_b(t_flags *fl, unsigned int nb, const char *s)
 		ret += ft_flag_attrs(fl, 'b', conv);
 		ft_putstr(conv);
 	}
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }

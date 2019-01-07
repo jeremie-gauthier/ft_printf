@@ -56,7 +56,8 @@ int			ft_conversion_lmaj_f(t_flags *fl, long double nb, const char *s)
 		ret = ft_strlen(conv);
 	}
 	ret += ft_conversion_lmaj_f_extend(fl, s, conv, precis);
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }
 
@@ -104,6 +105,7 @@ int			ft_conversion_f(t_flags *fl, double nb, const char *s)
 		ret = ft_strlen(conv);
 	}
 	ret += ft_conversion_f_extend(fl, s, conv, precis);
-	free(conv);
+	if (conv)
+		free(conv);
 	return (ret);
 }

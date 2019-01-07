@@ -71,6 +71,6 @@ int			ft_pad_c(t_flags *fl, const unsigned char c, const char *s)
 		return (len);
 	}
 	else
-		ft_pad_c_extend(fl, c, precis, pad_val);
+		len = ft_pad_c_extend(fl, c, precis, pad_val);
 	return (len);
 }

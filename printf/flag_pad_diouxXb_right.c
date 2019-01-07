@@ -26,7 +26,7 @@ static int	ft_do_precision(t_flags *fl, const char *conv, const char c,
 	}
 	ret += ft_flag_attrs(fl, c, conv);
 	ret += ft_precision_format_int((char*)conv, precis);
-	return (precis);
+	return (ret);
 }
 
 static int	ft_no_precision(t_flags *fl, const char *conv, const char c,

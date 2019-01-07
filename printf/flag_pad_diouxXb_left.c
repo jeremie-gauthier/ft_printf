@@ -70,10 +70,11 @@ static int	pad_pr(t_flags *fl, const char *conv, const char *s, const char c)
 	precis = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 	ret = 0;
 	if (pad_val > precis + sign)
-		ret += ft_put_spaces_pr(pad_val, precis, len, conv);
+		ret += ft_put_spaces_pr(pad_val, precis + sign, len, conv);
 	ret += ft_flag_attrs(fl, c, conv);
 	ret += deal_with_negative(fl, &conv, pad_val);
 	ret += ft_precision_format_int((char*)conv, precis);
+	// ft_putnbr(ret);
 	return (ret);
 }
 

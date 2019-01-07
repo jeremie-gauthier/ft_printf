@@ -78,6 +78,7 @@ const char		*ft_parser(const char *s, va_list ap, int *ret)
 	while (*s && !not_a_conv_flag(*s))
 		add_flag(*s++, fl);
 	*ret += ft_parser_extend(fl, s, ap, sptr);
-	free(fl);
+	if (fl)
+		free(fl);
 	return (s + 1);
 }
