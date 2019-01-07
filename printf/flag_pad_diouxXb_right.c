@@ -16,7 +16,9 @@ static int	ft_do_precision(t_flags *fl, const char *conv, const char c,
 				int precis)
 {
 	int	ret;
+	int	prefix;
 
+	prefix = (fl->dz == 1) ? 1 : 0;
 	ret = 0;
 	if (conv && *conv == '-')
 	{
@@ -25,7 +27,7 @@ static int	ft_do_precision(t_flags *fl, const char *conv, const char c,
 		fl->pl = 0;
 	}
 	ret += ft_flag_attrs(fl, c, conv);
-	ret += ft_precision_format_int((char*)conv, precis);
+	ret += ft_precision_format_int((char*)conv, precis - prefix);
 	return (ret);
 }
 

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	deal_with_negative(t_flags *fl, const char **conv, int pad_val)
+static int	deal_with_neg(t_flags *fl, const char **conv, int pad_val)
 {
 	int	ret;
 
@@ -72,9 +72,8 @@ static int	pad_pr(t_flags *fl, const char *conv, const char *s, const char c)
 	if (pad_val > precis + sign)
 		ret += ft_put_spaces_pr(pad_val, precis + sign, len, conv);
 	ret += ft_flag_attrs(fl, c, conv);
-	ret += deal_with_negative(fl, &conv, pad_val);
+	ret += deal_with_neg(fl, &conv, pad_val);
 	ret += ft_precision_format_int((char*)conv, precis);
-	// ft_putnbr(ret);
 	return (ret);
 }
 
@@ -85,27 +84,28 @@ static int	pad_no_pr(t_flags *fl, const char *conv, const char *s,
 	int		len;
 	int		precis;
 	int		ret;
+	int		prefix;
 
+	prefix = (fl->dz == 1) ? 1 : 0;
 	pad_val = get_pad_val(fl, c, s, conv);
 	len = ft_strlen(conv);
 	precis = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
 	ret = 0;
 	if (fl->f0 == 0)
 	{
-		ret += ft_put_spaces(pad_val, len);
-		ret += deal_with_negative(fl, &conv, pad_val);
+		ret += ft_put_spaces(pad_val, len) + deal_with_neg(fl, &conv, pad_val);
 		ret += ft_flag_attrs(fl, c, conv);
-		ft_putstr_unicode(conv);
+		(prefix == 0 || ft_strcmp(conv, "0")) ? ft_putstr_unicode(conv) : 0;
 	}
 	else if (fl->f0 == 1)
 	{
-		ret += deal_with_negative(fl, &conv, pad_val);
-		ret += ft_flag_attrs(fl, c, conv);
+		ret += deal_with_neg(fl, &conv, pad_val) + ft_flag_attrs(fl, c, conv);
 		ret += ft_put_zeroes(pad_val, len);
-		ft_putstr_unicode(conv);
+		(prefix == 0 || ft_strcmp(conv, "0")) ? ft_putstr_unicode(conv) : 0;
 	}
 	ret += ft_strlen(conv);
-	return (ret);
+	return ((c == 'o' && ft_strcmp(conv, "0") == 0) ? ret - prefix : ret);
+	// return (ret);
 }
 
 int			ft_pad_diouxxb_left(t_flags *fl, const char *conv, const char *s,
