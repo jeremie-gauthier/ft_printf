@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_pad_diouxxb.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 00:07:15 by jergauth          #+#    #+#             */
+/*   Updated: 2019/01/07 00:07:16 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int			get_pad_val(t_flags *fl, const char c, const char *s, const char *conv)
+int			get_pad_val(t_flags *fl, const char c, const char *s,
+					const char *conv)
 {
 	int		pad_val;
 
@@ -10,7 +23,8 @@ int			get_pad_val(t_flags *fl, const char c, const char *s, const char *conv)
 		if ((fl->sp || fl->pl) && conv && conv[0] != '-')
 			pad_val--;
 	}
-	if ((c == 'o' || c == 'x' || c == 'X' || c == 'b') && fl->dz && (ft_strlen(conv) != 1 || *conv != '0'))
+	if ((c == 'o' || c == 'x' || c == 'X' || c == 'b') && fl->dz
+				&& (ft_strlen(conv) != 1 || *conv != '0'))
 		pad_val -= (c == 'x' || c == 'X' || c == 'b') ? 2 : 1;
 	if (pad_val < 0)
 		return (0);
@@ -46,9 +60,6 @@ int			ft_put_spaces(int pad_val, int len)
 	if (tmp - len < 0)
 		return (0);
 	return (tmp - len);
-	// if (pad_val - tmp >= 0)
-	// 	return (pad_val - tmp);
-	// return (0);
 }
 
 int			ft_precision_format_int(const char *conv, int precis)
@@ -61,7 +72,6 @@ int			ft_precision_format_int(const char *conv, int precis)
 		ft_putchar('0');
 		len++;
 	}
-//	if (precis > 0 && ft_strlen(conv) != 1 && *conv != '0')
 	if (ft_strcmp(conv, "0") == 0)
 	{
 		if (precis > 0)
@@ -77,95 +87,12 @@ int			ft_precision_format_int(const char *conv, int precis)
 	return (len);
 }
 
-
-int			ft_pad_diouxXb(t_flags *fl, const char *conv, const char *s, const char c)
+int			ft_pad_diouxxb(t_flags *fl, const char *conv, const char *s,
+					const char c)
 {
-	// int		pad_val;
-	// int		len;
-	// int		precis;
-	// int		ret;
-
-	// pad_val = get_pad_val(fl, c, s, conv);
-	// len = ft_strlen(conv);
-	// precis = (fl->pr == 1) ? ft_get_flag_value(s, '.') : 0;
-	// ret = 0;
 	if (fl->mo)
-	{
-		return (ft_pad_diouxXb_right(fl, conv, s, c));
-		// fl->f0 = 0;
-		// ret = ft_flag_attrs(fl, c, conv);
-		// if (fl->pr)
-		// 	ret += ft_precision_format((char*)conv, precis, len);
-		// else
-		// {
-		// 	if (conv && *conv == '-')
-		// 	{
-		// 		ft_putchar(*conv++);
-		// 		(fl->pl) ? pad_val++ : 0;
-		// 		(fl->pl) ? ret-- : 0;
-		// 		fl->pl = 0;
-		// 	}
-		// 	ft_putstr_unicode(conv);
-		// }
-		// ret += ft_put_spaces(pad_val, len);
-		// return (ret);
-	}
+		return (ft_pad_diouxxb_right(fl, conv, s, c));
 	else
-	{
-		return (ft_pad_diouxXb_left(fl, conv, s, c));
-		// if (fl->pr)
-		// {
-		// 	precis = ((precis < len) ? precis : len);
-		// 	if (fl->f0 == 0)
-		// 	{
-		// 		ret = ft_put_spaces(pad_val, len);
-		// 		if (conv && *conv == '-')
-		// 		{
-		// 			ft_putchar(*conv++);
-		// 			(fl->pl) ? pad_val++ : 0;
-		// 			fl->pl = 0;
-		// 		}
-		// 	}
-		// 	if (fl->f0 == 1)
-		// 	{
-		// 		if (conv && *conv == '-')
-		// 		{
-		// 			ft_putchar(*conv++);
-		// 			(fl->pl) ? pad_val++ : 0;
-		// 			fl->pl = 0;
-		// 			ret = 1;
-		// 		}
-		// 		ret += ft_put_zeroes(pad_val, len);
-		// 	}
-		// 	ret += ft_precision_format((char*)conv, precis, len);
-		// }
-	// 	else
-	// 	{
-	// 		if (fl->f0 == 0)
-	// 		{
-	// 			ret += ft_put_spaces(pad_val, len);
-	// 			ret += ft_flag_attrs(fl, c, conv);
-	// 			if (conv && *conv == '-')
-	// 			{
-	// 				ft_putchar(*conv++);
-	// 				(fl->pl) ? pad_val++ : 0;
-	// 				fl->pl = 0;
-	// 			}
-	// 		}
-	// 		if (fl->f0 == 1)
-	// 		{
-	// 			if (conv && *conv == '-')
-	// 			{
-	// 				ft_putchar(*conv++);
-	// 				(fl->pl) ? pad_val++ : 0;
-	// 				fl->pl = 0;
-	// 			}
-	// 			ret += ft_flag_attrs(fl, c, conv);
-	// 			ret += ft_put_zeroes(pad_val, len);
-	// 		}
-	// 		ft_putstr_unicode(conv);
-	// 	}
-	// 	return (ret);
-	}
+		return (ft_pad_diouxxb_left(fl, conv, s, c));
 	return (0);
 }

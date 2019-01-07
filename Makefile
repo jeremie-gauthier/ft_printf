@@ -40,9 +40,10 @@ SOURCES	=	ft_printf.c		memory.c	parser.c	\
 			flag_prec.c	\
 			flag_pad_s.c	\
 			flag_pad_c.c	\
-			flag_pad_diouxXb.c	\
-			flag_pad_diouxXb_right.c \
-			flag_pad_diouxXb_left.c
+			flag_pad_diouxxb.c	\
+			flag_pad_diouxxb_right.c \
+			flag_pad_diouxxb_left.c	\
+			flag_pad_f.c
 
 SRCS	=	$(addprefix $(PTF_PATH)/,$(SOURCES))
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_attrs.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 00:07:01 by jergauth          #+#    #+#             */
+/*   Updated: 2019/01/07 00:07:02 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -74,38 +86,16 @@ int				ft_flag_attrs(t_flags *fl, const char c, const char *conv)
 	}
 	else if (conv && fl->sp)
 	{
-		ret += (conv && *conv == '-' && (c == 'd' || c == 'i')) ? 0 : ft_flag_space(fl, c);
+		ret += (conv && *conv == '-' && (c == 'd' || c == 'i'
+					|| c == 'f')) ? 0 : ft_flag_space(fl, c);
 		fl->sp = 0;
 	}
-	//	if (c != 'o' && ft_strcmp(conv, "0") != 0)
-/*# 0087 (int)
-  ft_printf("%#6o", 2500);
-  1. (    5) --> 4704<--
-  2. (    6) --> 04704<--
-
-# 0088 (int)
-  ft_printf("%-#6o", 2500);
-  1. (    6) -->4704  <--
-  2. (    6) -->04704 <--
-
-# 0095 (int)
-  ft_printf("@moulitest: %#.o %#.0o", 0, 0);
-  1. (   13) -->@moulitest:  <--
-  2. (   15) -->@moulitest: 0 0<--
-*/
 	if (conv && fl->dz)
 	{
-		// if (ft_strlen(conv) != 1 || *conv != '0')
-		// {
-			// ft_putstr("ici");
 		if (ft_strcmp(conv, "0") != 0)
 			ret += ft_flag_dz(c);
-		else
-		{
-			if (c == 'o')
-				ret += ft_flag_dz(c);
-		}
-		// }
+		else if (c == 'o')
+			ret += ft_flag_dz(c);
 		fl->dz = 0;
 	}
 	return (ret);

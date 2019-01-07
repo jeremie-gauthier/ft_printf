@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_pad_c.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 00:07:10 by jergauth          #+#    #+#             */
+/*   Updated: 2019/01/07 00:07:10 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	ft_put_padding(t_flags *fl, int pad_val, int len)
@@ -12,17 +24,32 @@ static int	ft_put_padding(t_flags *fl, int pad_val, int len)
 
 static int	ft_precision_format(const unsigned char c, int precis, int len)
 {
-	// char	*dup;
-
 	if (len <= precis)
 	{
 		ft_putchar(c);
 		return (len);
 	}
-	// dup = ft_strndup(c, precis);
-	// ft_putstr_unicode(dup);
-	// ft_strdel(&dup);
 	return (precis);
+}
+
+static int	ft_pad_c_extend(t_flags *fl, const unsigned char c, int precis,
+					int pad_val)
+{
+	int	len;
+
+	len = 1;
+	if (fl->pr)
+	{
+		precis = ((precis < len) ? precis : len);
+		pad_val = ft_put_padding(fl, pad_val, precis);
+		len = ft_precision_format(c, precis, len);
+	}
+	else
+	{
+		pad_val = ft_put_padding(fl, pad_val, len);
+		ft_putchar(c);
+	}
+	return (pad_val);
 }
 
 int			ft_pad_c(t_flags *fl, const unsigned char c, const char *s)
@@ -44,19 +71,6 @@ int			ft_pad_c(t_flags *fl, const unsigned char c, const char *s)
 		return (len);
 	}
 	else
-	{
-		if (fl->pr)
-		{
-			precis = ((precis < len) ? precis : len);
-			pad_val = ft_put_padding(fl, pad_val, precis);
-			len = ft_precision_format(c, precis, len);
-		}
-		else
-		{
-			pad_val = ft_put_padding(fl, pad_val, len);
-			ft_putchar(c);
-		}
-		return (pad_val);
-	}
+		ft_pad_c_extend(fl, c, precis, pad_val);
 	return (len);
 }

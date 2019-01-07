@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conversion_xmin.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/07 00:06:53 by jergauth          #+#    #+#             */
+/*   Updated: 2019/01/07 00:06:54 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -12,11 +24,11 @@ int		ft_conversion_h_xmin(t_flags *fl, unsigned short int nb, const char *s)
 	conv = ft_strlowcase(ft_uitoa_base(nb, 16));
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
-		ret = ft_pad_diouxXb(fl, conv, s, 'x');
+		ret = ft_pad_diouxxb(fl, conv, s, 'x');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'x', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s, 'x');
+		ret += ft_flag_prec_diouxx(fl, conv, s, 'x');
 	}
 	else
 	{
@@ -39,11 +51,11 @@ int		ft_conversion_hh_xmin(t_flags *fl, unsigned char nb, const char *s)
 	conv = ft_strlowcase(ft_uitoa_base(nb, 16));
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
-		ret = ft_pad_diouxXb(fl, conv, s, 'x');
+		ret = ft_pad_diouxxb(fl, conv, s, 'x');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'x', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s, 'x');
+		ret += ft_flag_prec_diouxx(fl, conv, s, 'x');
 	}
 	else
 	{
@@ -66,11 +78,11 @@ int		ft_conversion_l_xmin(t_flags *fl, unsigned long int nb, const char *s)
 	conv = ft_strlowcase(ft_ultoa_base(nb, 16));
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
-		ret = ft_pad_diouxXb(fl, conv, s, 'x');
+		ret = ft_pad_diouxxb(fl, conv, s, 'x');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'x', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s, 'x');
+		ret += ft_flag_prec_diouxx(fl, conv, s, 'x');
 	}
 	else
 	{
@@ -85,19 +97,20 @@ int		ft_conversion_l_xmin(t_flags *fl, unsigned long int nb, const char *s)
 **	Conversion x are call with appropriate function for flag 'll' conversion.
 */
 
-int		ft_conversion_ll_xmin(t_flags *fl, unsigned long long int nb, const char *s)
+int		ft_conversion_ll_xmin(t_flags *fl, unsigned long long int nb,
+				const char *s)
 {
 	char	*conv;
 	int		ret;
-	
+
 	conv = ft_strlowcase(ft_ulltoa_base(nb, 16));
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
-		ret = ft_pad_diouxXb(fl, conv, s, 'x');
+		ret = ft_pad_diouxxb(fl, conv, s, 'x');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'x', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s, 'x');
+		ret += ft_flag_prec_diouxx(fl, conv, s, 'x');
 	}
 	else
 	{
@@ -120,11 +133,11 @@ int		ft_conversion_xmin(t_flags *fl, uintptr_t nb, const char *s)
 	conv = ft_strlowcase(ft_uitoa_base(nb, 16));
 	ret = ft_strlen(conv);
 	if (fl->pad || fl->mo)
-		ret = ft_pad_diouxXb(fl, conv, s, 'x');
+		ret = ft_pad_diouxxb(fl, conv, s, 'x');
 	else if (fl->pr)
 	{
 		ret = ft_flag_attrs(fl, 'x', conv);
-		ret += ft_flag_prec_diouxX(fl, conv, s, 'x');
+		ret += ft_flag_prec_diouxx(fl, conv, s, 'x');
 	}
 	else
 	{
