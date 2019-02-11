@@ -32,8 +32,11 @@ t_flags		*init_flags(void)
 	new->mo = 0;
 	new->pl = 0;
 	new->sp = 0;
-	new->pad = 0;
-	new->pr = 0;
+	new->com = 0;
+	new->prc = -1;
+	new->pad = -1;
+	new->c = '\0';
+	new->base = 10;
 	return (new);
 }
 
@@ -41,7 +44,7 @@ t_flags		*init_flags(void)
 **	A special swap coded to swap bits from differents fields inside a bitfield.
 */
 
-static void	swap_field(t_flags *fl, char field)
+static void	swap_flag(t_flags *fl, char field)
 {
 	if (field == 'h')
 	{
@@ -58,73 +61,42 @@ static void	swap_field(t_flags *fl, char field)
 }
 
 /*
-**	Ajout des flags dans la struct de bitfields `t_flags *fl`.
+**	Adding flags in struct `t_flags *fl`.
 */
 
 void		add_flag(const char c, t_flags *fl)
 {
 	if (c == 'h')
-		(fl->h == 0) ? fl->h = 1 : swap_field(fl, 'h');
+		(fl->h == 0) ? fl->h = 1 : swap_flag(fl, 'h');
 	else if (c == 'l')
-		(fl->l == 0) ? fl->l = 1 : swap_field(fl, 'l');
+		(fl->l == 0) ? fl->l = 1 : swap_flag(fl, 'l');
 	else if (c == 'L')
 		fl->lm = 1;
 	else if (c == '#')
 		fl->dz = 1;
 	else if (c == '0')
-	{
 		fl->f0 = 1;
-		fl->pad = 1;
-	}
 	else if (c == '-')
 		fl->mo = 1;
 	else if (c == '+')
 		fl->pl = 1;
 	else if (c == ' ')
 		fl->sp = 1;
-	else if (ft_isdigit(c))
-		fl->pad = 1;
-	else if (c == '.')
-		fl->pr = 1;
+	else if (c == ',')
+		fl->com = 1;
 }
 
 /*
-**	Parse the string to get the value of a flag.
+**	Malloc the main struct that contains the buffer and its len.
 */
 
-static int	ft_get_flag_value_extend(const char *s, const char c)
+t_buf		*init_buf(void)
 {
-	while (*s && *s != c)
-		s++;
-	while (*s && *s == c)
-		s++;
-	if (c == '-')
-	{
-		while (*s && !ft_isdigit(*s) && *s != '.')
-			s++;
-		if (*s && *s == '.')
-			return (0);
-	}
-	return (ft_abs(ft_atoi(s)));
-}
+	t_buf	*new;
 
-/*
-**	Parse the string to get the value of a flag.
-*/
-
-int			ft_get_flag_value(const char *s, const char c)
-{
-	if (c == '1')
-	{
-		while (*s == '0')
-			s++;
-		while (*s && !ft_isdigit(*s))
-			s++;
-		if (ft_abs(ft_atoi(s)) != 0)
-			return (ft_abs(ft_atoi(s)));
-		while (*s && !ft_isdigit(*s))
-			s++;
-		return (ft_abs(ft_atoi(s + 1)));
-	}
-	return (ft_get_flag_value_extend(s, c));
+	if (!(new = (t_buf*)malloc(sizeof(*new))))
+		return (NULL);
+	new->str = NULL;
+	new->len = 0;
+	return (new);
 }

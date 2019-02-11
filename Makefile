@@ -12,7 +12,7 @@
 
 NAME	=	libftprintf.a
 
-PTF_PATH	=	printf
+PTF_PATH	=	ft_printf
 
 HDR		=	$(PTF_PATH)/ft_printf.h
 
@@ -22,28 +22,23 @@ LIB		=	$(LIB_PATH)/libft.a
 
 DIR_O	=	temporary
 
-SOURCES	=	ft_printf.c		memory.c	parser.c	\
-			conversion_i_d.c	\
-			conversion_b.c		\
-			conversion_o.c		\
-			conversion_u.c		\
-			conversion_xmin.c	\
-			conversion_xmaj.c	\
-			conversion_c.c	\
-			conversion_s.c	\
-			conversion_p.c	\
-			conversion_pc.c	\
-			conversion_f.c	\
-			type_conv.c		\
-			start_conv.c	\
-			flag_attrs.c	\
-			flag_prec.c	\
-			flag_pad_s.c	\
-			flag_pad_c.c	\
-			flag_pad_diouxxb.c	\
-			flag_pad_diouxxb_right.c \
-			flag_pad_diouxxb_left.c	\
-			flag_pad_f.c
+SOURCES	=	ft_printf.c			\
+			memory.c			\
+			parse_format.c		\
+			parse_flag.c		\
+			parse_color.c		\
+			select_conversion.c	\
+			conv_numeric.c		\
+			conv_str.c			\
+			conv_double.c		\
+			conv_ptr.c			\
+			format_flags.c		\
+			format_regular_op.c	\
+			format_comma.c		\
+			format_precision.c	\
+			format_char.c		\
+			format_numeric.c	\
+			ft_vprintf.c
 
 SRCS	=	$(addprefix $(PTF_PATH)/,$(SOURCES))
 
@@ -62,8 +57,7 @@ all		:	$(NAME)
 $(LIB)	:
 			@make -C $(LIB_PATH)
 
-$(NAME)	:	$(OBJS) $(LIB) Makefile
-			@#@make -C $(LIB_PATH)
+$(NAME)	:	$(OBJS) $(LIB) $(HDR) Makefile
 			@cp $(LIB) ./$(NAME)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)
