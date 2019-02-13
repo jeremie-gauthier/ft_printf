@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_destack.c                                       :+:      :+:    :+:   */
+/*   ft_stack_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:22:40 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/05 17:22:41 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 11:05:14 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 11:05:16 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_destack(t_stack **current, size_t limit)
+void	ft_stack_del(t_stack **head)
 {
 	t_stack	*tmp;
-	size_t	i;
+	t_stack	*current;
 
-	i = 0;
-	while (i < limit)
+	current = *head;
+	while (current)
 	{
-		tmp = *current;
-		*current = (*current)->next;
-		ft_memdel((void*)&tmp);
-		i++;
+		tmp = current;
+		current = current->next;
+		free(tmp);
+		tmp = NULL;
 	}
+	head = NULL;
 }

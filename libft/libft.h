@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/06 11:21:14 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/01/28 21:17:31 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
 /*
-**	Linked list
+**	Linked lists
 */
+
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -107,11 +108,14 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 **	Stack
 */
 
-void				ft_destack(t_stack **current, size_t limit);
-t_stack				*ft_stnew(int nb);
-void				ft_stdel(t_stack **head);
-void				ft_stprint(t_stack *current);
-void				ft_stpush(t_stack **elem, t_stack *new);
+t_stack				*ft_stack_new(int nb);
+void				ft_stack_del(t_stack **head);
+void				ft_stack_pop(t_stack **head, int nb);
+void				ft_stack_push_front(t_stack **head, t_stack *new);
+void				ft_stack_swap_top(t_stack **head);
+void				ft_stack_rotate(t_stack **head);
+void				ft_stack_rev_rotate(t_stack **head);
+void				ft_stack_print(t_stack *current);
 
 int					ft_isblank(int c);
 int					ft_iscntrl(int c);
@@ -140,7 +144,7 @@ void				print_bits(unsigned char c);
 void				ft_putchar_err(char c);
 void				ft_putstr_err(char *str);
 void				ft_putendl_err(char *str);
-void				ft_swap(void **a, void **b);
+void				ft_swap(int *a, int *b);
 char				*ft_itoa_base(int nb, int base);
 int					*ft_range(int start, int end);
 void				putnbr_base(int n, int base);

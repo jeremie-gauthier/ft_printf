@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdel.c                                         :+:      :+:    :+:   */
+/*   ft_stack_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:21:37 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/05 17:21:38 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 11:05:30 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 11:05:31 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_stdel(t_stack **head)
+void	ft_stack_print(t_stack *current)
 {
-	t_stack	*tmp;
-	t_stack	*current;
-
-	current = *head;
 	while (current)
 	{
-		tmp = current;
+		ft_putnbr(current->nb);
 		current = current->next;
-		ft_memdel((void*)&tmp);
 	}
-	head = NULL;
 }

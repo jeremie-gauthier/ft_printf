@@ -6,10 +6,11 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:39:11 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/06 10:15:55 by jergauth         ###   ########.fr       */
+/*   Updated: 2018/11/08 11:29:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <string.h>
 #include "libft.h"
 

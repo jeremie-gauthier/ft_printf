@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isxdigit.c                                      :+:      :+:    :+:   */
+/*   ft_stack_pop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 11:19:30 by jergauth          #+#    #+#             */
-/*   Updated: 2018/11/07 11:19:35 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 11:05:25 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 11:05:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isxdigit(int c)
+#include "libft.h"
+
+/*
+**	Remove the 'nb' firsts top elem of the stack and free them.
+*/
+
+void	ft_stack_pop(t_stack **head, int nb)
 {
-	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') ||
-		(c >= 'a' && c <= 'f'))
-		return (1);
-	return (0);
+	t_stack	*tmp;
+	int		i;
+
+	if (*head)
+	{
+		i = 0;
+		while (i < nb)
+		{
+			tmp = *head;
+			*head = (*head)->next;
+			ft_memdel((void*)&tmp);
+			i++;
+		}
+	}
 }

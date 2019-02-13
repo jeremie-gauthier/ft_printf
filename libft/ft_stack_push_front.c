@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stnew.c                                         :+:      :+:    :+:   */
+/*   ft_stack_push_front.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:21:42 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/05 17:21:44 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 11:05:34 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 11:05:35 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack		*ft_stnew(int nb)
+void	ft_stack_push_front(t_stack **head, t_stack *new)
 {
-	t_stack	*new;
-
-	if (!(new = (t_stack*)malloc(sizeof(*new))))
-		return (NULL);
-	new->nb = nb;
-	new->next = NULL;
-	return (new);
+	if (*head)
+	{
+		new->next = *head;
+		*head = new;
+	}
+	else
+		*head = new;
 }

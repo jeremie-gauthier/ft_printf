@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stpush.c                                        :+:      :+:    :+:   */
+/*   ft_stack_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 17:21:54 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/05 17:21:55 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 11:05:45 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 11:05:46 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_stpush(t_stack **elem, t_stack *new)
+/*
+**	Rotate all elements of the stack to the top position.
+**	The first element become the last.
+*/
+
+void	ft_stack_rotate(t_stack **head)
 {
-	if (*elem)
+	t_stack	*tmp;
+	t_stack	*current;
+
+	if (*head && (*head)->next)
 	{
-		new->next = *elem;
-		*elem = new;
+		tmp = *head;
+		*head = tmp->next;
+		current = *head;
+		while (current->next)
+			current = current->next;
+		current->next = tmp;
+		tmp->next = NULL;
 	}
-	else
-		*elem = new;
 }

@@ -46,7 +46,7 @@ static t_file	*get_file(const int fd, t_file **list)
 **	(line = chars delimited by '\n' or '\0').
 */
 
-static void		fill_line(t_file *list, char **line)
+static int		fill_line(t_file *list, char **line)
 {
 	char	*newline;
 	char	*tmp;
@@ -54,15 +54,19 @@ static void		fill_line(t_file *list, char **line)
 	if ((newline = ft_strchr(list->str, '\n')))
 	{
 		tmp = list->str;
-		*line = ft_strsub(list->str, 0, newline - list->str);
-		list->str = ft_strdup(newline + 1);
-		free(tmp);
+		if (!(*line = ft_strsub(list->str, 0, newline - list->str)))
+			return (-1);
+		if (!(list->str = ft_strdup(newline + 1)))
+			return (-1);
+		ft_strdel(&tmp);
 	}
 	else
 	{
-		*line = ft_strdup(list->str);
+		if (!(*line = ft_strdup(list->str)))
+			return (-1);
 		ft_strclr(list->str);
 	}
+	return (1);
 }
 
 /*
@@ -93,7 +97,7 @@ static int		read_fd(int fd, t_file *list)
 		tmp = list->str;
 		if (!(list->str = ft_strjoin(list->str, buf)))
 			return (-1);
-		free(tmp);
+		ft_strdel(&tmp);
 		if (ret == 0)
 			return (0);
 	}
@@ -112,7 +116,8 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	if ((ret = read_fd(fd, tmp)) == -1)
 		return (-1);
-	fill_line(tmp, line);
+	if (fill_line(tmp, line) == -1)
+		return (-1);
 	if (!ft_strlen(tmp->str) && !ft_strlen(*line) && !ret)
 		return (0);
 	return (1);

@@ -6,17 +6,15 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 12:08:41 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/06 11:27:43 by jergauth         ###   ########.fr       */
+/*   Updated: 2018/12/29 12:08:42 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap(void **a, void **b)
+void	ft_swap(int *a, int *b)
 {
-	void	*tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
+	*a ^= *b;
+	*b ^= *a;
+	*a ^= *b;
 }
