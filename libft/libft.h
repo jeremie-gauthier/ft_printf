@@ -112,6 +112,7 @@ t_stack				*ft_stack_new(int nb);
 void				ft_stack_del(t_stack **head);
 void				ft_stack_pop(t_stack **head, int nb);
 void				ft_stack_push_front(t_stack **head, t_stack *new);
+void				ft_stack_push_back(t_stack **head, t_stack *new);
 void				ft_stack_swap_top(t_stack **head);
 void				ft_stack_rotate(t_stack **head);
 void				ft_stack_rev_rotate(t_stack **head);

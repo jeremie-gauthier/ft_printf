@@ -14,9 +14,14 @@
 
 void	ft_stack_print(t_stack *current)
 {
-	while (current)
+	if (current != NULL)
 	{
-		ft_putnbr(current->nb);
-		current = current->next;
+		while (current)
+		{
+			ft_putnbr(current->nb);
+			ft_putchar(' ');
+			current = current->next;
+		}
 	}
+	ft_putendl("(null)");
 }

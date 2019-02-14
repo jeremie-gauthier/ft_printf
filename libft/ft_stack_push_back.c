@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_pop.c                                     :+:      :+:    :+:   */
+/*   ft_stack_push_back.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/13 11:05:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/13 11:05:26 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/13 14:44:04 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/13 14:44:06 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-**	Remove the 'nb' firsts top elem of the stack and free them.
-*/
-
-void	ft_stack_pop(t_stack **head, int nb)
+void	ft_stack_push_back(t_stack **head, t_stack *new)
 {
-	t_stack	*tmp;
-	int		i;
+	t_stack	*current;
 
-	if (*head)
+	if (head == NULL || *head == NULL)
+		(*head) = new;
+	else
 	{
-		i = 0;
-		while (i < nb)
-		{
-			tmp = *head;
-			*head = (*head)->next;
-			tmp->nb = 0;
-			tmp->next = NULL;
-			ft_memdel((void*)&tmp);
-			i++;
-		}
+		current = *head;
+		while (current->next)
+			current = current->next;
+		current->next = new;	
 	}
 }

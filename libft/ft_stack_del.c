@@ -17,13 +17,17 @@ void	ft_stack_del(t_stack **head)
 	t_stack	*tmp;
 	t_stack	*current;
 
-	current = *head;
-	while (current)
+	if (head && *head)
 	{
-		tmp = current;
-		current = current->next;
-		free(tmp);
-		tmp = NULL;
+		current = *head;
+		while (current)
+		{
+			tmp = current;
+			current = current->next;
+			tmp->next = NULL;
+			ft_memdel((void*)&tmp);
+		}
+		*head = NULL;
+		head = NULL;
 	}
-	head = NULL;
 }

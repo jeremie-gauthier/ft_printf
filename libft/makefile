@@ -122,7 +122,8 @@ SRCS	=	ft_memset.c		\
 			ft_stack_swap_top.c	\
 			ft_stack_rotate.c	\
 			ft_stack_rev_rotate.c	\
-			ft_stack_print.c
+			ft_stack_print.c	\
+			ft_stack_push_back.c
 
 OBJS	=	$(SRCS:.c=.o)
 
