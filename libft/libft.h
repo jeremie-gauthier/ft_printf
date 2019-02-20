@@ -62,6 +62,11 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 void				ft_bzero(void *s, size_t n);
+
+/*
+**	Memory functions
+*/
+
 void				*ft_memset(void *str, int c, size_t n);
 void				*ft_memcpy(void *str1, const void *str2, size_t n);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
@@ -70,6 +75,11 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
+void				*ft_memjoin(const void *first, size_t size_f,
+						const void *second, size_t size_s);
+void				*ft_memjoin_free(void *first, size_t size_f, void *second,
+						size_t size_s);
+
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
 void				ft_strclr(char *s);
@@ -117,6 +127,14 @@ void				ft_stack_swap_top(t_stack **head);
 void				ft_stack_rotate(t_stack **head);
 void				ft_stack_rev_rotate(t_stack **head);
 void				ft_stack_print(t_stack *current);
+int					ft_stack_find(t_stack *head, int nb_ref);
+int					ft_stack_min(t_stack *head);
+int					ft_stack_max(t_stack *head);
+int					ft_stack_at(t_stack *head, unsigned int index);
+unsigned int		ft_stack_size(t_stack *head);
+t_stack				*ft_stack_duplicate(t_stack *origin);
+int					ft_stack_is_sort(t_stack *head, int rev);
+int					ft_stack_is_nsort(t_stack *head, unsigned int limit, int rev);
 
 int					ft_isblank(int c);
 int					ft_iscntrl(int c);
@@ -155,6 +173,7 @@ void				putlnbr_base(long n, short base);
 void				putulnbr_base(unsigned long n, unsigned int base);
 void				putllnbr_base(long long n, short base);
 void				putullnbr_base(unsigned long long n, unsigned int base);
+int					ft_atoi_base(const char *str, int base);
 long				ft_atol_base(const char *str, int base);
 void				ft_putdouble(double d, unsigned short precision);
 char				*ft_dtoa(double d, unsigned short precision);
@@ -174,9 +193,7 @@ char				*ft_strncpy_safe(char *dest, const char *src, size_t n);
 double				ft_pow_ten(double nb, int power);
 char				*ft_dtoa_concat(char *s, long l, int sign);
 char				*ft_ldtoa_concat(char *s, long long l, int sign);
-void				*ft_memjoin(const void *first, size_t size_f,
-						const void *second, size_t size_s);
-void				*ft_memjoin_free(void *first, size_t size_f, void *second,
-						size_t size_s);
+size_t				ft_arrlen(void **arr);
+
 
 #endif

@@ -19,9 +19,8 @@ void	ft_stack_print(t_stack *current)
 		while (current)
 		{
 			ft_putnbr(current->nb);
-			ft_putchar(' ');
+			ft_putchar('\n');
 			current = current->next;
 		}
 	}
-	ft_putendl("(null)");
 }

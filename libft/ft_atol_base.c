@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 19:18:38 by jergauth          #+#    #+#             */
-/*   Updated: 2018/12/28 19:33:46 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/02/16 16:57:58 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ long		ft_atol_base(const char *str, int base)
 	long	res;
 	int		isneg;
 
-	if (base <= 1 && base > 36)
+	if (base <= 1 || base > 36)
 		return (0);
 	res = 0;
 	isneg = 0;

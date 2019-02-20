@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 16:31:28 by jergauth          #+#    #+#             */
-/*   Updated: 2018/12/26 19:32:19 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/02/16 16:59:37 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_itoa_base(int nb, int base)
 	int		sign;
 	int		n;
 
-	if (base <= 1 && base > 16)
+	if (base <= 1 || base > 16)
 		return (NULL);
 	if (nb == -2147483648)
 		return (ft_strdup("-2147483648"));

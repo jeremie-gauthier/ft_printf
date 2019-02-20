@@ -95,6 +95,7 @@ SRCS	=	ft_memset.c		\
 			putulnbr_base.c	\
 			putllnbr_base.c	\
 			putullnbr_base.c	\
+			ft_atoi_base.c	\
 			ft_atol_base.c	\
 			ft_putdouble.c	\
 			ft_ltoa_base.c	\
@@ -123,7 +124,16 @@ SRCS	=	ft_memset.c		\
 			ft_stack_rotate.c	\
 			ft_stack_rev_rotate.c	\
 			ft_stack_print.c	\
-			ft_stack_push_back.c
+			ft_stack_push_back.c	\
+			ft_stack_find.c	\
+			ft_stack_at.c	\
+			ft_stack_min.c	\
+			ft_stack_max.c	\
+			ft_stack_size.c	\
+			ft_stack_duplicate.c	\
+			ft_stack_is_sort.c	\
+			ft_stack_is_nsort.c	\
+			ft_arrlen.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -143,14 +153,14 @@ $(NAME)	:	$(OBJS) $(LIB) Makefile
 			@$(CC) $(CFLAGS) $(SRCS) -I $(LIB)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)
-			@echo "The libft.a file has been successfully created."
+			@echo "Libft		: The libft.a file has been successfully created."
 
 clean	:	
 			@$(RM) $(OBJS)
-			@echo "All .o files have been deleted."
+			@echo "Libft		: All .o files have been deleted."
 
 fclean	:	clean
 			@$(RM) $(NAME)
-			@echo "The libft.a file has been deleted."
+			@echo "Libft		: The libft.a file has been deleted."
 
 re		:	fclean all

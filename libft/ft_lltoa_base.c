@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 13:40:57 by jergauth          #+#    #+#             */
-/*   Updated: 2018/12/29 13:43:59 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/02/16 16:59:55 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_lltoa_base(long long nb, short base)
 	int			sign;
 	long long	n;
 
-	if (base <= 1 && base > 16)
+	if (base <= 1 || base > 16)
 		return (NULL);
 	if (nb < -9223372036854775807)
 		return (ft_strdup("-9223372036854775808"));

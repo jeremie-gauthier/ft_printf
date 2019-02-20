@@ -23,6 +23,6 @@ void	ft_stack_push_back(t_stack **head, t_stack *new)
 		current = *head;
 		while (current->next)
 			current = current->next;
-		current->next = new;	
+		current->next = new;
 	}
 }

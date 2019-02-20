@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 19:30:19 by jergauth          #+#    #+#             */
-/*   Updated: 2018/12/28 19:41:53 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/02/16 17:01:14 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_ultoa_base(unsigned long nb, short base)
 	int				len;
 	unsigned long	n;
 
-	if (base <= 1 && base > 16)
+	if (base <= 1 || base > 16)
 		return (NULL);
 	len = 1;
 	n = nb;

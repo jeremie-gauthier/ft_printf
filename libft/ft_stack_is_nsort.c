@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulltoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_stack_is_nsort.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/29 13:43:03 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/16 17:01:00 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/19 16:19:02 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/19 16:19:02 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ulltoa_base(unsigned long long nb, short base)
+int		ft_stack_is_nsort(t_stack *head, unsigned int limit, int rev)
 {
-	char				*str;
-	int					len;
-	unsigned long long	n;
-
-	if (base <= 1 || base > 16)
-		return (NULL);
-	len = 1;
-	n = nb;
-	while ((n /= base) > 0)
-		len++;
-	if (!(str = (char*)malloc(sizeof(*str) * (len + 1))))
-		return (NULL);
-	str[len--] = '\0';
-	while (len >= 0)
+	while (head && limit)
 	{
-		str[len--] = (nb % base > 9) ? (nb % base) + 55 : (nb % base) + 48;
-		nb /= base;
+		if (head->next)
+		{
+			if (rev == 0)
+			{
+				if (head->nb >= head->next->nb)
+					return (0);
+			}
+			else
+			{
+				if (head->nb <= head->next->nb)
+					return (0);
+			}
+		}
+		head = head->next;
+		limit--;
 	}
-	return (str);
+	return (1);
 }

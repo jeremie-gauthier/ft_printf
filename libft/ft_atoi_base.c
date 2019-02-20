@@ -6,7 +6,7 @@
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 16:16:41 by jergauth          #+#    #+#             */
-/*   Updated: 2018/12/26 19:32:08 by jergauth         ###   ########.fr       */
+/*   Updated: 2019/02/16 16:59:26 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_atoi_base(const char *str, int base)
 	int	res;
 	int	isneg;
 
-	if (base <= 1 && base > 36)
+	if (base <= 1 || base > 36)
 		return (0);
 	res = 0;
 	isneg = 0;

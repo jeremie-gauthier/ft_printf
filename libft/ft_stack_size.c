@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulltoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_stack_size.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/29 13:43:03 by jergauth          #+#    #+#             */
-/*   Updated: 2019/02/16 17:01:00 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/15 09:53:43 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/15 09:53:44 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_ulltoa_base(unsigned long long nb, short base)
+unsigned int	ft_stack_size(t_stack *head)
 {
-	char				*str;
-	int					len;
-	unsigned long long	n;
+	unsigned int	size;
 
-	if (base <= 1 || base > 16)
-		return (NULL);
-	len = 1;
-	n = nb;
-	while ((n /= base) > 0)
-		len++;
-	if (!(str = (char*)malloc(sizeof(*str) * (len + 1))))
-		return (NULL);
-	str[len--] = '\0';
-	while (len >= 0)
+	size = 0;
+	while (head)
 	{
-		str[len--] = (nb % base > 9) ? (nb % base) + 55 : (nb % base) + 48;
-		nb /= base;
+		head = head->next;
+		size++;
 	}
-	return (str);
+	return (size);
 }
