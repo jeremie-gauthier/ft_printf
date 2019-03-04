@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_duplicate.c                               :+:      :+:    :+:   */
+/*   ft_stack_node_at.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 19:24:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/04 19:24:26 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/03 17:30:56 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/03 17:30:57 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack		*ft_stack_duplicate(t_stack *origin)
-{
-	t_stack	*dup;
-	t_stack	*new_elem;
+/*
+**	Return the node located at index.
+*/
 
-	if (origin == NULL)
-		return ((dup = NULL));
-	if (!(dup = ft_stack_new(origin->nb)))
-		return (NULL);
-	origin = origin->next;
-	while (origin)
+t_stack		*ft_stack_node_at(t_stack *head, unsigned int index)
+{
+	unsigned int	i;
+
+	i = 1;
+	while (head && i < index)
 	{
-		if (!(new_elem = ft_stack_new(origin->nb)))
-		{
-			ft_stack_del(&dup);
-			return (NULL);
-		}
-		ft_stack_push_back(&dup, new_elem);
-		origin = origin->next;
+		i++;
+		head = head->next;
 	}
-	return (dup);
+	if (head)
+		return (head);
+	return (NULL);
 }

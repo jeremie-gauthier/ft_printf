@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_duplicate.c                               :+:      :+:    :+:   */
+/*   ft_stack_cmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 19:24:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/04 19:24:26 by jergauth         ###   ########.fr       */
+/*   Created: 2019/02/22 13:31:48 by jergauth          #+#    #+#             */
+/*   Updated: 2019/02/22 13:31:49 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack		*ft_stack_duplicate(t_stack *origin)
+int		ft_stack_cmp(t_stack *head, int data_ref, int (*f)(int, int))
 {
-	t_stack	*dup;
-	t_stack	*new_elem;
-
-	if (origin == NULL)
-		return ((dup = NULL));
-	if (!(dup = ft_stack_new(origin->nb)))
-		return (NULL);
-	origin = origin->next;
-	while (origin)
+	if (head == NULL || f == NULL)
+		return (0);
+	while (head)
 	{
-		if (!(new_elem = ft_stack_new(origin->nb)))
-		{
-			ft_stack_del(&dup);
-			return (NULL);
-		}
-		ft_stack_push_back(&dup, new_elem);
-		origin = origin->next;
+		if (f(head->nb, data_ref))
+			return (1);
+		head = head->next;
 	}
-	return (dup);
+	return (0);
 }

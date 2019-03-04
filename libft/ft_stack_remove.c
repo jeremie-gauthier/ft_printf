@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_duplicate.c                               :+:      :+:    :+:   */
+/*   ft_stack_remove.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 19:24:25 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/04 19:24:26 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/03 17:42:13 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/03 17:42:14 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack		*ft_stack_duplicate(t_stack *origin)
-{
-	t_stack	*dup;
-	t_stack	*new_elem;
+/*
+**	Remove the node at 'index'.
+*/
 
-	if (origin == NULL)
-		return ((dup = NULL));
-	if (!(dup = ft_stack_new(origin->nb)))
-		return (NULL);
-	origin = origin->next;
-	while (origin)
+void	ft_stack_remove(t_stack **head, const unsigned int index)
+{
+	t_stack			*tmp;
+	t_stack			*current;
+	unsigned int	i;
+
+	if (*head)
 	{
-		if (!(new_elem = ft_stack_new(origin->nb)))
+		current = *head;
+		i = 1;
+		while (i < (index - 1))
 		{
-			ft_stack_del(&dup);
-			return (NULL);
+			current = current->next;
+			i++;
 		}
-		ft_stack_push_back(&dup, new_elem);
-		origin = origin->next;
+		tmp = current->next;
+		current->next = current->next->next;
+		tmp->nb = 0;
+		tmp->next = NULL;
+		ft_memdel((void*)&tmp);
 	}
-	return (dup);
 }

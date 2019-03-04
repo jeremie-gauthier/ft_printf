@@ -22,7 +22,7 @@ static int	clean_quit(char **conv, char **substr, int ret)
 static int	ft_conv_char_w_padding(t_flags *fl, t_buf *buf, char c)
 {
 	char	*conv;
-	char	*tmp;
+	void	*tmp;
 
 	if (!(conv = ft_memalloc(fl->pad - 1)))
 		return (0);
@@ -39,22 +39,20 @@ static int	ft_conv_char_w_padding(t_flags *fl, t_buf *buf, char c)
 		if (!(conv = ft_memjoin(&c, 1, (void*)conv, fl->pad - 1)))
 			return (clean_quit(&conv, NULL, 0));
 	}
-	ft_strdel(&tmp);
+	ft_memdel(&tmp);
 	tmp = buf->str;
-	if (!(buf->str = ft_memjoin(buf->str, buf->len, (void*)conv, fl->pad)))
+	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, (void*)conv, fl->pad)))
 		return (clean_quit(&conv, NULL, 0));
 	buf->len += fl->pad;
-	ft_strdel(&tmp);
+	ft_memdel(&tmp);
 	return (1);
 }
 
 int			ft_format_char(t_flags *fl, t_buf *buf, unsigned char c)
 {
 	char	*tmp;
-	char	*conv;
 
 	tmp = NULL;
-	conv = NULL;
 	if (fl->pad > 1)
 	{
 		if (!(ft_conv_char_w_padding(fl, buf, c)))
@@ -84,12 +82,12 @@ static int	ft_putspaces_to_str(t_flags *fl, char **conv, int len, t_buf *buf)
 				(fl->mo == 0 && fl->f0 == 1) ? '0' : ' ', len_pad);
 		if (fl->mo == 1)
 		{
-			if (!(*conv = ft_memjoin(*conv, len, substr, len_pad)))
+			if (!(*conv = ft_memjoin_free(*conv, len, substr, len_pad)))
 				return (clean_quit(NULL, &substr, 0));
 		}
 		else
 		{
-			if (!(*conv = ft_memjoin(substr, len_pad, *conv, len)))
+			if (!(*conv = ft_memjoin_free(substr, len_pad, *conv, len)))
 				return (clean_quit(NULL, &substr, 0));
 		}
 	}
@@ -102,6 +100,9 @@ static int	ft_putspaces_to_str(t_flags *fl, char **conv, int len, t_buf *buf)
 
 int			ft_format_str(t_flags *fl, char **conv, int len, t_buf *buf)
 {
+	char	*tmp;
+
+	tmp = *conv;
 	if (fl->prc != -1 && fl->prc < len)
 	{
 		if (!(ft_format_prc(fl, conv, &len)))
@@ -111,6 +112,7 @@ int			ft_format_str(t_flags *fl, char **conv, int len, t_buf *buf)
 	{
 		if (!(ft_putspaces_to_str(fl, conv, len, buf)))
 			return (0);
+		ft_strdel(&tmp);
 		return (1);
 	}
 	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, *conv, len)))
