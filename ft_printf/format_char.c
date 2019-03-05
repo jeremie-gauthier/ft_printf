@@ -40,11 +40,9 @@ static int	ft_conv_char_w_padding(t_flags *fl, t_buf *buf, char c)
 			return (clean_quit(&conv, NULL, 0));
 	}
 	ft_memdel(&tmp);
-	tmp = buf->str;
 	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, (void*)conv, fl->pad)))
 		return (clean_quit(&conv, NULL, 0));
 	buf->len += fl->pad;
-	ft_memdel(&tmp);
 	return (1);
 }
 
@@ -112,7 +110,6 @@ int			ft_format_str(t_flags *fl, char **conv, int len, t_buf *buf)
 	{
 		if (!(ft_putspaces_to_str(fl, conv, len, buf)))
 			return (0);
-		ft_strdel(&tmp);
 		return (1);
 	}
 	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, *conv, len)))
