@@ -98,9 +98,6 @@ static int	ft_putspaces_to_str(t_flags *fl, char **conv, int len, t_buf *buf)
 
 int			ft_format_str(t_flags *fl, char **conv, int len, t_buf *buf)
 {
-	char	*tmp;
-
-	tmp = *conv;
 	if (fl->prc != -1 && fl->prc < len)
 	{
 		if (!(ft_format_prc(fl, conv, &len)))
