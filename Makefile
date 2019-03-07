@@ -61,7 +61,7 @@ $(NAME): $(OBJS) $(LIB) $(HDR) Makefile
 		@cp $(LIB) ./$(NAME)
 		@ar rc $(NAME) $(OBJS)
 		@ranlib $(NAME)
-		@echo "libftprintf.a has been successfully created."
+		@echo "ft_printf	: libftprintf.a has been successfully created."
 
 $(DIR_O)/%.o: $(PTF_PATH)/%.c
 		@mkdir -p temporary
@@ -71,11 +71,11 @@ clean:
 		@$(RM) $(OBJS)
 		@rm -rf $(DIR_O)
 		@make clean -C $(LIB_PATH)
-		@echo "All .o files have been deleted."
+		@echo "ft_printf	: *.o files have been deleted."
 
 fclean:	clean
 		@$(RM) $(NAME) $(LIB)
-		@echo "libftprintf.a and libft.a has been deleted."
+		@echo "ft_printf	: libftprintf.a and libft.a has been deleted."
 
 re:	fclean all
 
