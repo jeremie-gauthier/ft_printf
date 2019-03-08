@@ -142,7 +142,19 @@ SRCS	=	ft_memset.c		\
 			ft_stack_node_at.c	\
 			ft_stack_remove.c	\
 			ft_arrlen.c	\
-			ft_nb_is_lower.c
+			ft_nb_is_lower.c	\
+			btree_create_node.c	\
+			btree_insert_data.c	\
+			btree_apply_prefix_lr.c	\
+			btree_apply_prefix_rl.c	\
+			btree_apply_infix_lr.c	\
+			btree_apply_infix_rl.c	\
+			btree_apply_postfix_lr.c	\
+			btree_apply_postfix_rl.c	\
+			btree_remove_node.c	\
+			btree_search_data.c	\
+			btree_level_count.c	\
+			btree_del.c
 
 DIR_O	=	temporary
 

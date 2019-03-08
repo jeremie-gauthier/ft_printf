@@ -20,6 +20,12 @@
 
 # define BUFF_SIZE	32
 
+typedef enum		e_bool
+{
+	false,
+	true
+}					t_bool;
+
 typedef struct		s_list
 {
 	void			*content;
@@ -39,6 +45,13 @@ typedef struct		s_file
 	char			*str;
 	struct s_file	*next;
 }					t_file;
+
+typedef struct		s_btree
+{
+	void			*data;
+	struct s_btree	*left;
+	struct s_btree	*right;
+}					t_btree;
 
 size_t				ft_strlen(const char *str);
 int					ft_isalpha(int c);
@@ -146,6 +159,25 @@ long				ft_stack_sum(t_stack *head);
 long				ft_stack_nsum(t_stack *head, unsigned int limit);
 t_stack				*ft_stack_node_at(t_stack *head, unsigned int index);
 void				ft_stack_remove(t_stack **head, const unsigned int index);
+
+/*
+**	BINARY TREES
+*/
+
+t_btree				*btree_create_node(void *data);
+void				btree_insert_data(t_btree **root, void *item,
+						int (*cmpf)(void *, void *));
+void				btree_apply_prefix_lr(t_btree *root, void (*applyf)(void *));
+void				btree_apply_prefix_rl(t_btree *root, void (*applyf)(void *));
+void				btree_apply_infix_lr(t_btree *root, void (*applyf)(void *));
+void				btree_apply_infix_rl(t_btree *root, void (*applyf)(void *));
+void				btree_apply_postfix_lr(t_btree *root, void (*applyf)(void *));
+void				btree_apply_postfix_rl(t_btree *root, void (*applyf)(void *));
+void				btree_remove_node(t_btree *node);
+void				*btree_search_data(t_btree *root, void *data_ref,
+						int (*cmpf)(void *, void *));
+int					btree_level_count(t_btree *root);
+void				btree_del(t_btree **root, int data_is_malloc);
 
 int					ft_isblank(int c);
 int					ft_iscntrl(int c);
