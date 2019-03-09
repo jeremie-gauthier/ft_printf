@@ -58,7 +58,7 @@ static char		*round_this(double d, long l, int sign)
 	char	*tmp;
 
 	whole = NULL;
-	if ((d * 10.0) >= 5.0)
+	if ((d * 10.0) > 5.0)
 		l += (sign == 1) ? -1 : 1;
 	if (sign)
 	{
