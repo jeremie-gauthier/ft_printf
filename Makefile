@@ -52,31 +52,35 @@ RM		=	rm -f
 
 CLEAN	=	clean
 
-all		:	$(NAME)
+all:	$(NAME)
 
-$(LIB)	:
-			@make -C $(LIB_PATH)
+$(LIB):
+		@make -C $(LIB_PATH)
 
-$(NAME)	:	$(OBJS) $(LIB) $(HDR) Makefile
-			@cp $(LIB) ./$(NAME)
-			@ar rc $(NAME) $(OBJS)
-			@ranlib $(NAME)
-			@echo "libftprintf.a has been successfully created."
+$(NAME): $(OBJS) $(LIB) $(HDR) Makefile
+		@cp $(LIB) ./$(NAME)
+		@ar rc $(NAME) $(OBJS)
+		@ranlib $(NAME)
+		@echo "ft_printf	: libftprintf.a has been successfully created."
 
 $(DIR_O)/%.o: $(PTF_PATH)/%.c
 		@mkdir -p temporary
+<<<<<<< HEAD
 		@$(CC) $(CFLAGS) -I $(PTF_PATH) -o $@ -c $<
+=======
+		@$(CC) $(CFLAGS) -o $@ -c $<
+>>>>>>> 6e996058b17827ce294020cc4e58e1f882a59ef8
 
-clean	:
-			@$(RM) $(OBJS)
-			@rm -rf $(DIR_O)
-			@make clean -C $(LIB_PATH)
-			@echo "All .o files have been deleted."
+clean:
+		@$(RM) $(OBJS)
+		@rm -rf $(DIR_O)
+		@make clean -C $(LIB_PATH)
+		@echo "ft_printf	: *.o files have been deleted."
 
-fclean	:	clean
-			@$(RM) $(NAME) $(LIB)
-			@echo "libftprintf.a and libft.a has been deleted."
+fclean:	clean
+		@$(RM) $(NAME) $(LIB)
+		@echo "ft_printf	: libftprintf.a and libft.a has been deleted."
 
-re		:	fclean all
+re:	fclean all
 
 .PHONY:	all clean fclean re

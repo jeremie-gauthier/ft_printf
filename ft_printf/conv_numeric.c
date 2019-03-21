@@ -59,6 +59,7 @@ static char	*conv_w_flag(t_flags *fl, va_list ap)
 int			ft_conv_numeric(t_flags *fl, t_buf *buf, va_list ap)
 {
 	char	*conv;
+	size_t	len;
 
 	if (fl->l | fl->ll | fl->h | fl->hh)
 		conv = conv_w_flag(fl, ap);
@@ -72,9 +73,9 @@ int			ft_conv_numeric(t_flags *fl, t_buf *buf, va_list ap)
 		return (clean_quit(&conv, 0));
 	if (fl->c == 'x')
 		conv = ft_strlowcase(conv);
-	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, conv,
-			ft_strlen(conv))))
+	len = ft_strlen(conv);
+	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, conv, len)))
 		return (clean_quit(&conv, 0));
-	buf->len += ft_strlen(conv);
+	buf->len += len;
 	return (1);
 }

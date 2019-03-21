@@ -58,7 +58,7 @@ static char		*round_this(double d, long l, int sign)
 	char	*tmp;
 
 	whole = NULL;
-	if ((d * 10.0) >= 5.0)
+	if ((d * 10.0) > 5.0)
 		l += (sign == 1) ? -1 : 1;
 	if (sign)
 	{
@@ -100,7 +100,7 @@ static char		*fill_str(double d, unsigned short precision,
 	s = NULL;
 	if (precision <= 0)
 		return (round_this(d, whole, sign));
-	if (!(s2 = (char*)malloc(sizeof(*s2) * borne)))
+	if (!(s2 = (char*)malloc(sizeof(*s2) * borne + 1)))
 		return (NULL);
 	p = 0;
 	s2[p++] = '.';

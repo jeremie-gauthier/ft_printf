@@ -106,6 +106,7 @@ int			ft_conv_ptr(t_flags *fl, t_buf *buf, va_list ap)
 {
 	void	*ptr;
 	char	*conv;
+	size_t	len;
 
 	ptr = va_arg(ap, void*);
 	if (ptr == 0)
@@ -116,15 +117,15 @@ int			ft_conv_ptr(t_flags *fl, t_buf *buf, va_list ap)
 	}
 	else
 	{
-		if (!(conv = ft_ultoa_base((unsigned long)&(*ptr), 16)))
+		if (!(conv = ft_ultoa_base((unsigned long)ptr, 16)))
 			return (0);
 	}
 	if (!(ft_format_ptr(fl, &conv)))
 		return (0);
 	conv = ft_strlowcase(conv);
-	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, conv,
-			ft_strlen(conv))))
+	len = ft_strlen(conv);
+	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, conv, len)))
 		return (clean_quit(&conv, 0));
-	buf->len += ft_strlen(conv);
+	buf->len += len;
 	return (1);
 }

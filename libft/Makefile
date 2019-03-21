@@ -142,34 +142,54 @@ SRCS	=	ft_memset.c		\
 			ft_stack_node_at.c	\
 			ft_stack_remove.c	\
 			ft_arrlen.c	\
-			ft_nb_is_lower.c
+			ft_nb_is_lower.c	\
+			btree_create_node.c	\
+			btree_insert_data.c	\
+			btree_apply_prefix_lr.c	\
+			btree_apply_prefix_rl.c	\
+			btree_apply_infix_lr.c	\
+			btree_apply_infix_rl.c	\
+			btree_apply_postfix_lr.c	\
+			btree_apply_postfix_rl.c	\
+			btree_remove_node.c	\
+			btree_search_data.c	\
+			btree_level_count.c	\
+			btree_del.c
 
-OBJS	=	$(SRCS:.c=.o)
+DIR_O	=	temporary
+
+OBJS	=	$(addprefix $(DIR_O)/,$(SRCS:.c=.o))
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Werror -Wextra -c
+CFLAGS	=	-Wall -Werror -Wextra
 
 LIB		=	libft.h
 
-RM		=	rm -f
+RM		=	rm -rf
 
 CLEAN	=	clean
 
-all		:	$(NAME)	
+all:		$(NAME)
 
-$(NAME)	:	$(OBJS) $(LIB) Makefile
-			@$(CC) $(CFLAGS) $(SRCS) -I $(LIB)
+$(NAME):	$(OBJS) $(LIB) Makefile
+			@echo "Libft		: Compilation in progress..."
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)
 			@echo "Libft		: The libft.a file has been successfully created."
 
-clean	:	
-			@$(RM) $(OBJS)
-			@echo "Libft		: All .o files have been deleted."
+$(DIR_O)/%.o: %.c
+			@mkdir -p temporary
+			@$(CC) $(CFLAGS) -o $@ -c $<
 
-fclean	:	clean
+clean:	
+			@$(RM) $(DIR_O)
+			@echo "Libft		: *.o files have been deleted."
+
+fclean:		clean
 			@$(RM) $(NAME)
 			@echo "Libft		: The libft.a file has been deleted."
 
-re		:	fclean all
+re:			fclean all
+
+.PHONY: all clean fclean re

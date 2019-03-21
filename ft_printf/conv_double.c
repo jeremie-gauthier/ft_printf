@@ -21,6 +21,7 @@ static int	clean_quit(char **conv, int ret)
 int			ft_conv_double(t_flags *fl, t_buf *buf, va_list ap)
 {
 	char	*conv;
+	size_t	len;
 
 	if (fl->lm)
 		conv = ft_ldtoa(va_arg(ap, long double), (fl->prc == -1) ? 6 : fl->prc);
@@ -30,9 +31,10 @@ int			ft_conv_double(t_flags *fl, t_buf *buf, va_list ap)
 		return (0);
 	if (!(ft_format_flag(fl, &conv)))
 		return (clean_quit(&conv, 0));
+	len = ft_strlen(conv);
 	if (!(buf->str = ft_memjoin_free(buf->str, buf->len, conv,
 			ft_strlen(conv))))
 		return (clean_quit(&conv, 0));
-	buf->len += ft_strlen(conv);
+	buf->len += len;
 	return (1);
 }
