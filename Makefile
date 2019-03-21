@@ -6,7 +6,7 @@
 #    By: jergauth <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/26 19:46:18 by jergauth          #+#    #+#              #
-#    Updated: 2018/12/26 19:46:20 by jergauth         ###   ########.fr        #
+#    Updated: 2019/03/21 12:55:38 by jergauth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ $(NAME)	:	$(OBJS) $(LIB) $(HDR) Makefile
 
 $(DIR_O)/%.o: $(PTF_PATH)/%.c
 		@mkdir -p temporary
-		@$(CC) $(CFLAGS) -I $(HDR) -o $@ -c $<
+		@$(CC) $(CFLAGS) -I $(PTF_PATH) -o $@ -c $<
 
 clean	:
 			@$(RM) $(OBJS)
