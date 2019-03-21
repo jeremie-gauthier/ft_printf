@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_level_count.c                                :+:      :+:    :+:   */
+/*   btree_rotate_right.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 14:24:29 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/21 14:24:31 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/21 14:22:40 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/21 14:22:41 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		btree_level_count(t_btree *root)
+void	btree_rotate_right(t_btree **root)
 {
-	int		left;
-	int		right;
+	t_btree	*tmp;
 
-	if (root == NULL)
-		return (0);
-	left = btree_level_count(root->left);
-	right = btree_level_count(root->right);
-	if (left > right)
-		return (left + 1);
-	return (right + 1);
+	tmp = (*root)->left;
+	(*root)->left = tmp->right;
+	tmp->right = *root;
+	(*root)->height = btree_height(*root);
+	tmp->height = btree_height(tmp);
+	*root = tmp;
 }

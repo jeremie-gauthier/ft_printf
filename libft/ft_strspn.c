@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_level_count.c                                :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 14:24:29 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/21 14:24:31 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/21 14:22:13 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/21 14:22:14 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		btree_level_count(t_btree *root)
+size_t	ft_strspn(const char *s, const char *accept)
 {
-	int		left;
-	int		right;
+	size_t	len;
 
-	if (root == NULL)
-		return (0);
-	left = btree_level_count(root->left);
-	right = btree_level_count(root->right);
-	if (left > right)
-		return (left + 1);
-	return (right + 1);
+	len = 0;
+	if (s && accept)
+	{
+		while (*s)
+		{
+			if (ft_strchr(accept, *s) == NULL)
+				return (len);
+			len++;
+			s++;
+		}
+	}
+	return (len);
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   btree_level_count.c                                :+:      :+:    :+:   */
+/*   btree_balance_factor.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 14:24:29 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/21 14:24:31 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/21 14:23:27 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/21 14:23:28 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		btree_level_count(t_btree *root)
+int		btree_balance_factor(t_btree *root)
 {
-	int		left;
-	int		right;
+	int	lh;
+	int	rh;
 
 	if (root == NULL)
 		return (0);
-	left = btree_level_count(root->left);
-	right = btree_level_count(root->right);
-	if (left > right)
-		return (left + 1);
-	return (right + 1);
+	if (root->left == NULL)
+		lh = 0;
+	else
+		lh = 1 + root->left->height;
+	if (root->right == NULL)
+		rh = 0;
+	else
+		rh = 1 + root->right->height;
+	return (lh - rh);
 }

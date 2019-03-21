@@ -51,6 +51,7 @@ typedef struct		s_btree
 	void			*data;
 	struct s_btree	*left;
 	struct s_btree	*right;
+	int				height;
 }					t_btree;
 
 size_t				ft_strlen(const char *str);
@@ -59,6 +60,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isoperator(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strcat(char *dest, const char *src);
@@ -74,6 +76,8 @@ char				*ft_strdup(const char *s);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
+size_t				ft_strspn(const char *s, const char *accept);
+size_t				ft_strcspn(const char *s, const char *reject);
 void				ft_bzero(void *s, size_t n);
 
 /*
@@ -161,19 +165,24 @@ t_stack				*ft_stack_node_at(t_stack *head, unsigned int index);
 void				ft_stack_remove(t_stack **head, const unsigned int index);
 
 /*
-**	BINARY TREES
+**	BINARY TREES - AVL IMPLEMENTATION
 */
 
 t_btree				*btree_create_node(void *data);
-void				btree_insert_data(t_btree **root, void *item,
+void				btree_insert_data(t_btree **root, void *x,
 						int (*cmpf)(void *, void *));
+int					btree_height(t_btree *root);
+int					btree_balance_factor(t_btree *root);
+void				btree_rotate_right(t_btree **root);
+void				btree_rotate_left(t_btree **root);
 void				btree_apply_prefix_lr(t_btree *root,
 						void (*applyf)(void *));
 void				btree_apply_prefix_rl(t_btree *root,
 						void (*applyf)(void *));
 void				btree_apply_infix_lr(t_btree *root,
 						void (*applyf)(void *));
-void				btree_apply_infix_rl(t_btree *root, void (*applyf)(void *));
+void				btree_apply_infix_rl(t_btree *root,
+						void (*applyf)(void *));
 void				btree_apply_postfix_lr(t_btree *root,
 						void (*applyf)(void *));
 void				btree_apply_postfix_rl(t_btree *root,

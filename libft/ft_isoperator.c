@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 14:08:11 by jergauth          #+#    #+#             */
-/*   Updated: 2019/03/21 14:08:12 by jergauth         ###   ########.fr       */
+/*   Created: 2019/03/21 14:22:24 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/21 14:22:25 by jergauth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isoperator(char c)
+int		ft_isoperator(int c)
 {
 	return (c == '+' || c == '-' || c == '*' || c == '/' || c == '%');
 }
