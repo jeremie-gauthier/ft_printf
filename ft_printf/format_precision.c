@@ -27,8 +27,8 @@ int			ft_format_diese(t_flags *fl, char **conv)
 
 	tmp = *conv;
 	if ((fl->dz && ((fl->c == 'x') | (fl->c == 'X') | (fl->c == 'b')
-			| ((fl->c == 'o') & (*conv[0] != '0')) | ((fl->c == 'f') & (fl->prc == 0))))
-				|| (fl->c == 'p'))
+			| ((fl->c == 'o') & (*conv[0] != '0'))
+				| ((fl->c == 'f') & (fl->prc == 0)))) || (fl->c == 'p'))
 	{
 		if (fl->c == 'x' || fl->c == 'X' || fl->c == 'p')
 			if (!(*conv = ft_strjoin("0X", *conv)))

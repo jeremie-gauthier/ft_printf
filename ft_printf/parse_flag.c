@@ -22,7 +22,7 @@ static int	clean_quit(t_flags **fl, int ret)
 **	Add the numeric values (precision and padding) to the struct.
 */
 
-static void	add_numeric_flags(t_flags *fl, const char **format)
+static void	add_numeric_flags(va_list ap, t_flags *fl, const char **format)
 {
 	if (**format == '.')
 	{
@@ -36,6 +36,11 @@ static void	add_numeric_flags(t_flags *fl, const char **format)
 		fl->pad = ft_atoi(*format);
 		while (ft_isdigit(**format))
 			(*format)++;
+	}
+	if (**format == '*')
+	{
+		(*format)++;
+		fl->pad = va_arg(ap, int);
 	}
 }
 
@@ -54,31 +59,31 @@ static void	set_base_conv(t_flags *fl)
 **	fill the struct.
 */
 
-int			parse_flags(const char **format, t_buf *buf, va_list ap)
+int			parse_flags(const char **form, t_buf *buf, va_list ap)
 {
 	t_flags	*fl;
 
 	if (!(fl = init_flags()))
 		return (0);
-	(*format)++;
-	while (**format && ft_instr(**format, ALL_FLAGS))
+	(*form)++;
+	while (**form && ft_instr(**form, ALL_FLAGS))
 	{
-		add_flag(**format, fl);
-		if (**format == '.' || (ft_isdigit(**format) && **format != '0'))
-			add_numeric_flags(fl, format);
+		add_flag(**form, fl);
+		if (ft_strchr(".*", **form) || (ft_isdigit(**form) && **form != '0'))
+			add_numeric_flags(ap, fl, form);
 		else
-			(*format)++;
+			(*form)++;
 	}
-	if (ft_instr(**format, ALL_CONV) || ft_instr(**format, REDIRECT))
+	if (ft_instr(**form, ALL_CONV) || ft_instr(**form, REDIRECT))
 	{
-		fl->c = **format;
-		if (ft_instr(**format, REDIRECT))
+		fl->c = **form;
+		if (ft_instr(**form, REDIRECT))
 			redirection_conversion(fl);
 		set_base_conv(fl);
 		if (!(conversion(fl, buf, ap)))
 			return (clean_quit(&fl, 0));
-		if (**format)
-			(*format)++;
+		if (**form)
+			(*form)++;
 	}
 	return (clean_quit(&fl, 1));
 }

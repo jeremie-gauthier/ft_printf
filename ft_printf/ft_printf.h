@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-# define ALL_FLAGS	"Llh+- .#0123456789,"
+# define ALL_FLAGS	"Llh+- .#0123456789,*"
 # define ALL_CONV	"cspdiouxXbf%"
 # define REDIRECT	"DIOU"
 # define INT_CONV	"di"

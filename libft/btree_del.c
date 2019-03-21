@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   btree_del.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergauth <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/21 14:10:16 by jergauth          #+#    #+#             */
+/*   Updated: 2019/03/21 14:10:17 by jergauth         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	btree_del(t_btree **root, int data_is_malloc)
@@ -11,5 +23,5 @@ void	btree_del(t_btree **root, int data_is_malloc)
 		if (data_is_malloc == 1)
 			ft_memdel(&(*root)->data);
 		ft_memdel((void**)root);
-	}	
+	}
 }

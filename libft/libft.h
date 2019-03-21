@@ -167,12 +167,17 @@ void				ft_stack_remove(t_stack **head, const unsigned int index);
 t_btree				*btree_create_node(void *data);
 void				btree_insert_data(t_btree **root, void *item,
 						int (*cmpf)(void *, void *));
-void				btree_apply_prefix_lr(t_btree *root, void (*applyf)(void *));
-void				btree_apply_prefix_rl(t_btree *root, void (*applyf)(void *));
-void				btree_apply_infix_lr(t_btree *root, void (*applyf)(void *));
+void				btree_apply_prefix_lr(t_btree *root,
+						void (*applyf)(void *));
+void				btree_apply_prefix_rl(t_btree *root,
+						void (*applyf)(void *));
+void				btree_apply_infix_lr(t_btree *root,
+						void (*applyf)(void *));
 void				btree_apply_infix_rl(t_btree *root, void (*applyf)(void *));
-void				btree_apply_postfix_lr(t_btree *root, void (*applyf)(void *));
-void				btree_apply_postfix_rl(t_btree *root, void (*applyf)(void *));
+void				btree_apply_postfix_lr(t_btree *root,
+						void (*applyf)(void *));
+void				btree_apply_postfix_rl(t_btree *root,
+						void (*applyf)(void *));
 void				btree_remove_node(t_btree *node);
 void				*btree_search_data(t_btree *root, void *data_ref,
 						int (*cmpf)(void *, void *));
